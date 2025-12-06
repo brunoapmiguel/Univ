@@ -12,11 +12,11 @@ public class App {
         Scanner teclado = new Scanner(System.in); //Definição de "teclado" como input
         //Declaração de variaveis
         int numeroHospedes, opcMenu;
-        boolean estaOcupado;
+
         //Definição de classes
         class quarto {
             int id, numero, capacidade;
-            boolean ocupado;
+            boolean estaOcupado;
         }
         class hospede{
             int id;
