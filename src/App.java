@@ -131,43 +131,55 @@ public class App {
 
     //Funções de QUARTOS
     private static void listarTodosOsQuartos(){
+        System.out.println("RESERVAS -> Listar todos os Quartos");
         break;
     }
     private static void listarQuartosLivres(){
+        System.out.println("RESERVAS -> Listar Quartos Livres");
         break;
     }
     private static void listarQuartosOcupados(){
+        System.out.println("RESERVAS -> Listar Quartos Ocupados");
         break;
     }
 
     //Funções de HOSPEDES
     private static void listarHospedes(){
+        System.out.println("HOSPEDES -> Listar Hospedes");
         break;
     }
     private static void procurarHospedePorDocumento(){
+        System.out.println("HOSPEDES -> Procurar Hospede por documento");
         break;
     }
     private static void editarHospede(){
+        System.out.println("HOSPEDES -> Editar Hospede");
         break;
     }
 
     //Funções de RESERVAS
     private static void encontrarQuartoLivrePorCapacidade(){
+        System.out.println("RESERVAS -> Encontrar Quarto Livre por capacidade");
         break;
     }
     private static void selecionarQuartoEspecifico(){
+        System.out.println("RESERVAS -> Selecionar Quarto especifico");
         break;
     }
     private static void listarTodasAsReservas(){
+        System.out.println("RESERVAS -> Listar todas as Reservas");
         break;
     }
     private static void listarReservaPorQuarto(){
+        System.out.println("RESERVAS -> Listar Reserva por Quarto");
         break;
     }
     private static void listarReservaPorHospede(){
+        System.out.println("RESERVAS -> Listar Reserva por Hospede");
         break;
     }
     private static void editarReserva(){
+        System.out.println("RESERVAS -> Editar Reserva");
         break;
     }
 }
