@@ -7,11 +7,10 @@ Reserva: id, idQuarto, idHospede, numeroHospede, dataInicio, dataFim, ativa
 import java.util.*;
 
 public class App {
-
     public static void main(String[] args) throws Exception {
         Scanner teclado = new Scanner(System.in); //Definição de "teclado" como input
         //Declaração de variaveis
-        int numeroHospedes, opcMenu;
+        int opcMenu, opcSubMenu; //variaveis de menu
 
         //Definição de classes
         class quarto {
@@ -28,49 +27,148 @@ public class App {
         }
 
         do {
-            System.out.println("== MENU ==");
-            System.out.println("1 - Quartos");
-            System.out.println("2 - Hospedes");
-            System.out.println("3 - Reservas");
-            System.out.println("0 - Sair");
+            showMainMenu();
             System.out.print("Escolha uma opcao: ");
             opcMenu = teclado.nextInt();
             switch (opcMenu) {
                 case 1:
-                    System.out.println("== QUARTOS ==");
-                    System.out.println("1 - Listar todos os Quartos");
-                    System.out.println("2 - Listar Quartos livres");
-                    System.out.println("3 - Listar Quartos ocupados");
-                    System.out.println("0 - Sair");
-                    System.out.print("Escolha uma opcao: ");
-                    opcMenu = teclado.nextInt();
+                    showMenuQuartos();
+                    opcSubMenu = teclado.nextInt();
+                    switch (opcSubMenu) {
+                        case 1:
+                            listarTodosOsQuartos();
+                            break;
+                        case 2:
+                            listarQuartosLivres();
+                             break;
+                        case 3:
+                            listarQuartosOcupados();
+                            break;
+                    }
                     break;
                 case 2:
-                    System.out.println("== HOSPEDES ==");
-                    System.out.println("1 - Listar Hospedes");
-                    System.out.println("2 - Procurar Hospede por documento");
-                    System.out.println("3 - Editar Hospede");
-                    System.out.println("0 - Sair");
-                    System.out.print("Escolha uma opcao: ");
-                    opcMenu = teclado.nextInt();
+                    showMenuHospedes();
+                    opcSubMenu = teclado.nextInt();
+                    switch (opcSubMenu) {
+                        case 1:
+                            listarHospedes();
+                            break;
+                        case 2:
+                            procurarHospedePorDocumento();
+                            break;
+                        case 3:
+                            editarHospede();
+                            break;
+                    }
                     break;
                 case 3:
-                    System.out.println("== RESERVAS ==");
-                    System.out.println("1 - Encontrar qualquer Quarto livre para determinada capacidade");
-                    System.out.println("2 - Selecionar Quarto especifico"); //Se indisponivel sugerir automaticamente uma alternativa adequada
-                    System.out.println("3 - Listar todas as Reservas");
-                    System.out.println("4 - Listar Reservas por Quarto"); //presentes ou futuras
-                    System.out.println("5 - Listar Reservas por Hospede"); //presentes ou futuras
-                    System.out.println("6 - Editar Reserva"); //numero de hospede ou datas e revalidar capacidade e conflitos
-                    System.out.println("0 - Sair");
-                    System.out.print("Escolha uma opcao: ");
-                    opcMenu = teclado.nextInt();
+                    showMenuReservas();
+                    opcSubMenu = teclado.nextInt();
+                    switch (opcSubMenu) {
+                        case 1:
+                            encontrarQuartoLivrePorCapacidade();
+                            break;
+                        case 2:
+                            selecionarQuartoEspecifico();
+                            break;
+                        case 3:
+                            listarTodasAsReservas();
+                            break;
+                        case 4:
+                            listarReservaPorQuarto();
+                            break;
+                        case 5:
+                            listarReservaPorHospede();
+                            break;
+                        case 6:
+                            editarReserva();
+                            break;
+                    }
                     break;
             }
         } while (opcMenu != 0);
     }
 
+    //Design do MENU PRINCIPAL
+    private static void showMainMenu(){
+        System.out.println("== MENU ==");
+        System.out.println("1 - Quartos");
+        System.out.println("2 - Hospedes");
+        System.out.println("3 - Reservas");
+        System.out.println("0 - Sair");
+        System.out.print("Escolha uma opcao: ");
+    }
 
+    //Design dos SUB-MENUS
+    private static void showMenuQuartos(){
+        System.out.println("== QUARTOS ==");
+        System.out.println("1 - Listar todos os Quartos");
+        System.out.println("2 - Listar Quartos livres");
+        System.out.println("3 - Listar Quartos ocupados");
+        System.out.println("0 - Sair");
+        System.out.print("Escolha uma opcao: ");
+    }
+    private static void showMenuHospedes(){
+        System.out.println("== HOSPEDES ==");
+        System.out.println("1 - Listar Hospedes");
+        System.out.println("2 - Procurar Hospede por documento");
+        System.out.println("3 - Editar Hospede");
+        System.out.println("0 - Sair");
+        System.out.print("Escolha uma opcao: ");
+    }
 
+    private static void showMenuReservas(){
+        System.out.println("== RESERVAS ==");
+        System.out.println("1 - Encontrar qualquer Quarto livre para determinada capacidade");
+        System.out.println("2 - Selecionar Quarto especifico"); //Se indisponivel sugerir automaticamente uma alternativa adequada
+        System.out.println("3 - Listar todas as Reservas");
+        System.out.println("4 - Listar Reservas por Quarto"); //presentes ou futuras
+        System.out.println("5 - Listar Reservas por Hospede"); //presentes ou futuras
+        System.out.println("6 - Editar Reserva"); //numero de hospede ou datas e revalidar capacidade e conflitos
+        System.out.println("0 - Sair");
+        System.out.print("Escolha uma opcao: ");
+    }
+
+    //Funções de QUARTOS
+    private static void listarTodosOsQuartos(){
+        break;
+    }
+    private static void listarQuartosLivres(){
+        break;
+    }
+    private static void listarQuartosOcupados(){
+        break;
+    }
+
+    //Funções de HOSPEDES
+    private static void listarHospedes(){
+        break;
+    }
+    private static void procurarHospedePorDocumento(){
+        break;
+    }
+    private static void editarHospede(){
+        break;
+    }
+
+    //Funções de RESERVAS
+    private static void encontrarQuartoLivrePorCapacidade(){
+        break;
+    }
+    private static void selecionarQuartoEspecifico(){
+        break;
+    }
+    private static void listarTodasAsReservas(){
+        break;
+    }
+    private static void listarReservaPorQuarto(){
+        break;
+    }
+    private static void listarReservaPorHospede(){
+        break;
+    }
+    private static void editarReserva(){
+        break;
+    }
 }
 
