@@ -11,6 +11,9 @@ public class App {
         Scanner teclado = new Scanner(System.in); //Definição de "teclado" como input
         //Declaração de variaveis
         int opcMenu, opcSubMenu; //variaveis de menu
+        String numDocumentoHospede;
+        int numPessoas, numQuarto, numReserva;
+
 
         //Definição de classes
         class quarto {
@@ -35,12 +38,15 @@ public class App {
                     opcSubMenu = teclado.nextInt();
                     switch (opcSubMenu) {
                         case 1:
+                            System.out.println("RESERVAS -> Listar todos os Quartos");
                             listarTodosOsQuartos();
                             break;
                         case 2:
+                            System.out.println("RESERVAS -> Listar Quartos Livres");
                             listarQuartosLivres();
-                             break;
+                            break;
                         case 3:
+                            System.out.println("RESERVAS -> Listar Quartos Ocupados");
                             listarQuartosOcupados();
                             break;
                     }
@@ -50,12 +56,19 @@ public class App {
                     opcSubMenu = teclado.nextInt();
                     switch (opcSubMenu) {
                         case 1:
+                            System.out.println("HOSPEDES -> Listar Hospedes");
                             listarHospedes();
                             break;
                         case 2:
+                            System.out.println("HOSPEDES -> Procurar Hospede por documento");
+                            System.out.print("Insira o número do documento (CC) do Hospede: ");
+                            numDocumentoHospede = teclado.nextLine();
                             procurarHospedePorDocumento();
                             break;
                         case 3:
+                            System.out.println("HOSPEDES -> Editar Hospede");
+                            System.out.print("Insira o número do documento (CC) do Hospede: ");
+                            numDocumentoHospede = teclado.nextLine();
                             editarHospede();
                             break;
                     }
@@ -65,21 +78,37 @@ public class App {
                     opcSubMenu = teclado.nextInt();
                     switch (opcSubMenu) {
                         case 1:
+                            System.out.println("RESERVAS -> Encontrar Quarto Livre por capacidade");
+                            System.out.print("Insira o número de pessoas: ");
+                            numPessoas = teclado.nextInt();
                             encontrarQuartoLivrePorCapacidade();
                             break;
                         case 2:
+                            System.out.println("RESERVAS -> Selecionar Quarto especifico");
+                            System.out.print("Insira o número do Quarto: ");
+                            numQuarto = teclado.nextInt();
                             selecionarQuartoEspecifico();
                             break;
                         case 3:
+                            System.out.println("RESERVAS -> Listar todas as Reservas");
                             listarTodasAsReservas();
                             break;
                         case 4:
+                            System.out.println("RESERVAS -> Listar Reserva por Quarto");
+                            System.out.print("Insira o número do Quarto: ");
+                            numQuarto = teclado.nextInt();
                             listarReservaPorQuarto();
                             break;
                         case 5:
+                            System.out.println("RESERVAS -> Listar Reserva por Hospede");
+                            System.out.print("Insira o número do documento (CC) do Hospede: ");
+                            numDocumentoHospede = teclado.nextLine();
                             listarReservaPorHospede();
                             break;
                         case 6:
+                            System.out.println("RESERVAS -> Editar Reserva");
+                            System.out.print("Insira o ID da Reserva: ");
+                            numReserva = teclado.nextInt();
                             editarReserva();
                             break;
                     }
@@ -130,55 +159,43 @@ public class App {
 
     //Funções de QUARTOS
     private static void listarTodosOsQuartos(){
-        System.out.println("RESERVAS -> Listar todos os Quartos");
 
     }
     private static void listarQuartosLivres(){
-        System.out.println("RESERVAS -> Listar Quartos Livres");
 
     }
     private static void listarQuartosOcupados(){
-        System.out.println("RESERVAS -> Listar Quartos Ocupados");
 
     }
 
     //Funções de HOSPEDES
     private static void listarHospedes(){
-        System.out.println("HOSPEDES -> Listar Hospedes");
 
     }
     private static void procurarHospedePorDocumento(){
-        System.out.println("HOSPEDES -> Procurar Hospede por documento");
 
     }
     private static void editarHospede(){
-        System.out.println("HOSPEDES -> Editar Hospede");
 
     }
 
     //Funções de RESERVAS
     private static void encontrarQuartoLivrePorCapacidade(){
-        System.out.println("RESERVAS -> Encontrar Quarto Livre por capacidade");
 
     }
     private static void selecionarQuartoEspecifico(){
-        System.out.println("RESERVAS -> Selecionar Quarto especifico");
 
     }
     private static void listarTodasAsReservas(){
-        System.out.println("RESERVAS -> Listar todas as Reservas");
 
     }
     private static void listarReservaPorQuarto(){
-        System.out.println("RESERVAS -> Listar Reserva por Quarto");
 
     }
     private static void listarReservaPorHospede(){
-        System.out.println("RESERVAS -> Listar Reserva por Hospede");
 
     }
     private static void editarReserva(){
-        System.out.println("RESERVAS -> Editar Reserva");
 
     }
 }
