@@ -14,7 +14,6 @@ public class App {
         String numDocumentoHospede;
         int numPessoas, numQuarto, numReserva;
 
-
         //Definição de classes
         class quarto {
             int id, numero, capacidade;
@@ -159,44 +158,55 @@ public class App {
 
     //Funções de QUARTOS
     private static void listarTodosOsQuartos(){
-
+        pressEnterToContinue();
     }
     private static void listarQuartosLivres(){
-
+        pressEnterToContinue();
     }
     private static void listarQuartosOcupados(){
-
+        pressEnterToContinue();
     }
 
     //Funções de HOSPEDES
     private static void listarHospedes(){
-
+        pressEnterToContinue();
     }
     private static void procurarHospedePorDocumento(){
-
+        pressEnterToContinue();
     }
     private static void editarHospede(){
-
+        pressEnterToContinue();
     }
 
     //Funções de RESERVAS
     private static void encontrarQuartoLivrePorCapacidade(){
-
+        pressEnterToContinue();
     }
     private static void selecionarQuartoEspecifico(){
-
+        pressEnterToContinue();
     }
     private static void listarTodasAsReservas(){
-
+        pressEnterToContinue();
     }
     private static void listarReservaPorQuarto(){
-
+        pressEnterToContinue();
     }
     private static void listarReservaPorHospede(){
-
+        pressEnterToContinue();
     }
     private static void editarReserva(){
+        pressEnterToContinue();
+    }
 
+    private static void pressEnterToContinue()
+    {
+        System.out.println("Press ENTER key to continue...");
+        try
+        {
+            System.in.read();
+        }
+        catch(Exception e)
+        {}
     }
 }
 
