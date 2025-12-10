@@ -12,8 +12,8 @@ public class App {
         Scanner teclado = new Scanner(System.in); //Definição de "teclado" como input
         //Declaração de variaveis
         int opcMenu, opcSubMenu; //variaveis de menu
-        String numDocumentoHospede;
-        int numPessoas, numQuarto, numReserva;
+        String numDocumentoHospede; //variavel para receber o numero de CC do hospede
+        int numPessoas, numQuarto, numReserva; //Variaveis para o Numero de Pessoas, Numero de Quarto e Numero de Reserva
 
         //Definição de classes
         class quarto {
@@ -80,14 +80,14 @@ public class App {
                         case 1:
                             System.out.println("RESERVAS -> Encontrar Quarto Livre por capacidade"); //Cabeçalho
                             System.out.print("Insira o número de pessoas: "); //Pede o numero de pessoas (INTEGER)
-                            numPessoas = teclado.nextInt();
-                            encontrarQuartoLivrePorCapacidade();
+                            numPessoas = teclado.nextInt(); //Receber o numero de pessoas
+                            encontrarQuartoLivrePorCapacidade(); //Chamar a função que vai encontrar os quartos livres para a capacidade desejada
                             break;
                         case 2:
                             System.out.println("RESERVAS -> Selecionar Quarto especifico"); //Cabeçalho
                             System.out.print("Insira o número do Quarto: "); //Pede o numero do quarto (INTEGER)
-                            numQuarto = teclado.nextInt();
-                            selecionarQuartoEspecifico();
+                            numQuarto = teclado.nextInt(); //Receber o numero de quarto
+                            selecionarQuartoEspecifico(); //Função que vai escolher um quarto especifico para a reserva
                             break;
                         case 3:
                             System.out.println("RESERVAS -> Listar todas as Reservas"); //Cabeçalho
@@ -96,18 +96,18 @@ public class App {
                         case 4:
                             System.out.println("RESERVAS -> Listar Reserva por Quarto"); //Cabeçalho
                             System.out.print("Insira o número do Quarto: "); //Pede o número do quarto (INTEGER)
-                            numQuarto = teclado.nextInt();
+                            numQuarto = teclado.nextInt(); //Receber o numero de quarto
                             listarReservaPorQuarto();
                             break;
                         case 5:
                             System.out.println("RESERVAS -> Listar Reserva por Hospede"); //Cabeçalho
-                            System.out.print("Insira o número do documento (CC) do Hospede: ");
+                            System.out.print("Insira o número do documento (CC) do Hospede: "); //Pedir o numero de CC do hospede
                             numDocumentoHospede = teclado.nextLine(); //Recebe o numero de CC. (AINDA FALTA VALIDAR O FORMATO)
                             listarReservaPorHospede();
                             break;
                         case 6:
                             System.out.println("RESERVAS -> Editar Reserva"); //Cabeçalho
-                            System.out.print("Insira o ID da Reserva: ");
+                            System.out.print("Insira o ID da Reserva: "); //Pedir o ID da reserva
                             numReserva = teclado.nextInt(); //Recebe o numero da revserva (INTEGER)
                             editarReserva(); //Chama a função que vai permitir editar a reserva
                             break;
