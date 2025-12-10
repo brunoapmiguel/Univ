@@ -4,6 +4,7 @@ Quarto: id, numero, capacidade, estaOcupado
 Hospede: id, nome, documento
 Reserva: id, idQuarto, idHospede, numeroHospede, dataInicio, dataFim, ativa
 * */
+
 import java.util.*;
 
 public class App {
