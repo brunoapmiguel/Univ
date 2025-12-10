@@ -29,95 +29,95 @@ public class App {
             boolean ativa;
         }
 
-        do {
-            showMainMenu();
-            opcMenu = teclado.nextInt();
-            switch (opcMenu) {
+        do { //Esta função de DO, tem como objectivo repetir o menu enquanto o utilizador não escolher a opção 0 para sair
+            showMainMenu(); //Chama a função que desenha o Menu Principal
+            opcMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
+            switch (opcMenu) { //Switch Case para as diferentes opções
                 case 1:
-                    showMenuQuartos();
-                    opcSubMenu = teclado.nextInt();
+                    showMenuQuartos(); //Chama a função que desenha o menu dos quartos
+                    opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
                     switch (opcSubMenu) {
                         case 1:
-                            System.out.println("RESERVAS -> Listar todos os Quartos");
-                            listarTodosOsQuartos();
+                            System.out.println("RESERVAS -> Listar todos os Quartos"); //Cabeçalho
+                            listarTodosOsQuartos(); //Chama a função que vai listar todos os quartos
                             break;
                         case 2:
-                            System.out.println("RESERVAS -> Listar Quartos Livres");
-                            listarQuartosLivres();
+                            System.out.println("RESERVAS -> Listar Quartos Livres"); //Cabeçalho
+                            listarQuartosLivres(); //Chama a função que vai listar os quartos livres
                             break;
                         case 3:
-                            System.out.println("RESERVAS -> Listar Quartos Ocupados");
-                            listarQuartosOcupados();
+                            System.out.println("RESERVAS -> Listar Quartos Ocupados"); //Cabeçalho
+                            listarQuartosOcupados(); //Chama a função que vai listar os quartos ocupados
                             break;
                     }
                     break;
                 case 2:
-                    showMenuHospedes();
-                    opcSubMenu = teclado.nextInt();
+                    showMenuHospedes(); //Chama a fução que desenha o menu de hospedes
+                    opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
                     switch (opcSubMenu) {
                         case 1:
-                            System.out.println("HOSPEDES -> Listar Hospedes");
-                            listarHospedes();
+                            System.out.println("HOSPEDES -> Listar Hospedes"); //Cabeçalho
+                            listarHospedes(); //Chama a função que vai listar os hospedes
                             break;
                         case 2:
-                            System.out.println("HOSPEDES -> Procurar Hospede por documento");
-                            System.out.print("Insira o número do documento (CC) do Hospede: ");
-                            numDocumentoHospede = teclado.nextLine();
-                            procurarHospedePorDocumento();
+                            System.out.println("HOSPEDES -> Procurar Hospede por documento"); //Cabeçalho
+                            System.out.print("Insira o número do documento (CC) do Hospede: ");  //Pede o CC do hospede
+                            numDocumentoHospede = teclado.nextLine(); //Recebe o numero de CC. (AINDA FALTA VALIDAR O FORMATO)
+                            procurarHospedePorDocumento();  //Chama a função que mostrar o hospede correspondente
                             break;
                         case 3:
-                            System.out.println("HOSPEDES -> Editar Hospede");
-                            System.out.print("Insira o número do documento (CC) do Hospede: ");
-                            numDocumentoHospede = teclado.nextLine();
-                            editarHospede();
+                            System.out.println("HOSPEDES -> Editar Hospede"); //Cabeçalho
+                            System.out.print("Insira o número do documento (CC) do Hospede: ");  //Pede o CC do hospede
+                            numDocumentoHospede = teclado.nextLine(); //Recebe o numero de CC. (AINDA FALTA VALIDAR O FORMATO)
+                            editarHospede(); //Chama a função que vai permitir editar os dados do hospede
                             break;
                     }
                     break;
                 case 3:
-                    showMenuReservas();
-                    opcSubMenu = teclado.nextInt();
+                    showMenuReservas(); //Chama a fução que desenha o menu de reservas
+                    opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
                     switch (opcSubMenu) {
                         case 1:
-                            System.out.println("RESERVAS -> Encontrar Quarto Livre por capacidade");
-                            System.out.print("Insira o número de pessoas: ");
+                            System.out.println("RESERVAS -> Encontrar Quarto Livre por capacidade"); //Cabeçalho
+                            System.out.print("Insira o número de pessoas: "); //Pede o numero de pessoas (INTEGER)
                             numPessoas = teclado.nextInt();
                             encontrarQuartoLivrePorCapacidade();
                             break;
                         case 2:
-                            System.out.println("RESERVAS -> Selecionar Quarto especifico");
-                            System.out.print("Insira o número do Quarto: ");
+                            System.out.println("RESERVAS -> Selecionar Quarto especifico"); //Cabeçalho
+                            System.out.print("Insira o número do Quarto: "); //Pede o numero do quarto (INTEGER)
                             numQuarto = teclado.nextInt();
                             selecionarQuartoEspecifico();
                             break;
                         case 3:
-                            System.out.println("RESERVAS -> Listar todas as Reservas");
-                            listarTodasAsReservas();
+                            System.out.println("RESERVAS -> Listar todas as Reservas"); //Cabeçalho
+                            listarTodasAsReservas(); //Chama a função que vai listar todas as reservas
                             break;
                         case 4:
-                            System.out.println("RESERVAS -> Listar Reserva por Quarto");
-                            System.out.print("Insira o número do Quarto: ");
+                            System.out.println("RESERVAS -> Listar Reserva por Quarto"); //Cabeçalho
+                            System.out.print("Insira o número do Quarto: "); //Pede o número do quarto (INTEGER)
                             numQuarto = teclado.nextInt();
                             listarReservaPorQuarto();
                             break;
                         case 5:
-                            System.out.println("RESERVAS -> Listar Reserva por Hospede");
+                            System.out.println("RESERVAS -> Listar Reserva por Hospede"); //Cabeçalho
                             System.out.print("Insira o número do documento (CC) do Hospede: ");
-                            numDocumentoHospede = teclado.nextLine();
+                            numDocumentoHospede = teclado.nextLine(); //Recebe o numero de CC. (AINDA FALTA VALIDAR O FORMATO)
                             listarReservaPorHospede();
                             break;
                         case 6:
-                            System.out.println("RESERVAS -> Editar Reserva");
+                            System.out.println("RESERVAS -> Editar Reserva"); //Cabeçalho
                             System.out.print("Insira o ID da Reserva: ");
-                            numReserva = teclado.nextInt();
-                            editarReserva();
+                            numReserva = teclado.nextInt(); //Recebe o numero da revserva (INTEGER)
+                            editarReserva(); //Chama a função que vai permitir editar a reserva
                             break;
                     }
                     break;
             }
-        } while (opcMenu != 0);
+        } while (opcMenu != 0); //Repetir equanto a opção escolhida não for 0. Se for 0, sai
     }
 
-    //Design do MENU PRINCIPAL
+    //Desenhar o MENU PRINCIPAL
     private static void showMainMenu(){
         System.out.println("== MENU ==");
         System.out.println("1 - Quartos");
@@ -127,7 +127,7 @@ public class App {
         System.out.print("Escolha uma opcao: ");
     }
 
-    //Design dos SUB-MENUS
+    //Desenhar SUB-MENUS
     private static void showMenuQuartos(){
         System.out.println("== QUARTOS ==");
         System.out.println("1 - Listar todos os Quartos");
@@ -136,6 +136,7 @@ public class App {
         System.out.println("0 - Sair");
         System.out.print("Escolha uma opcao: ");
     }
+    //Desenhar o Menu de Hospedes
     private static void showMenuHospedes(){
         System.out.println("== HOSPEDES ==");
         System.out.println("1 - Listar Hospedes");
@@ -144,7 +145,7 @@ public class App {
         System.out.println("0 - Sair");
         System.out.print("Escolha uma opcao: ");
     }
-
+    //Desenhar o Menu de Reservas
     private static void showMenuReservas(){
         System.out.println("== RESERVAS ==");
         System.out.println("1 - Encontrar qualquer Quarto livre para determinada capacidade");
@@ -159,49 +160,49 @@ public class App {
 
     //Funções de QUARTOS
     private static void listarTodosOsQuartos(){
-        pressEnterToContinue();
+        pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
     private static void listarQuartosLivres(){
-        pressEnterToContinue();
+        pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
     private static void listarQuartosOcupados(){
-        pressEnterToContinue();
+        pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
 
     //Funções de HOSPEDES
     private static void listarHospedes(){
-        pressEnterToContinue();
+        pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
     private static void procurarHospedePorDocumento(){
-        pressEnterToContinue();
+        pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
     private static void editarHospede(){
-        pressEnterToContinue();
+        pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
 
     //Funções de RESERVAS
     private static void encontrarQuartoLivrePorCapacidade(){
-        pressEnterToContinue();
+        pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
     private static void selecionarQuartoEspecifico(){
-        pressEnterToContinue();
+        pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
     private static void listarTodasAsReservas(){
-        pressEnterToContinue();
+        pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
     private static void listarReservaPorQuarto(){
-        pressEnterToContinue();
+        pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
     private static void listarReservaPorHospede(){
-        pressEnterToContinue();
+        pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
     private static void editarReserva(){
-        pressEnterToContinue();
+        pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
-
+    //Função para aguardar um ENTER por parte do utilizador antes de mudar o menu
     private static void pressEnterToContinue()
     {
-        System.out.println("Press ENTER key to continue...");
+        System.out.println("Press ENTER key to continue..."); //Mostrar a mensagem a pedir que o utilizador pressione a tecla ENTER
         try
         {
             System.in.read();
