@@ -2,6 +2,7 @@ public class Classes {
     //Definição de classes
     class Quarto {
         int id, numero, capacidade;
+        boolean estaOcupado;
     }
 
     class Hospede {
