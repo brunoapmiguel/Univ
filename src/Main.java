@@ -15,9 +15,9 @@ public class Main {
     static final int maxReservas = 1000;
 
     //Ficheiros
-    static final String fQuartos = "quartos.csv";
-    static final String fHospedes = "hospedes.csv";
-    static final String fReservas = "reservas.csv";
+    static final String fileQuartos = "quartos.csv";
+    static final String fileHospedes = "hospedes.csv";
+    static final String fileReservas = "reservas.csv";
 
     public static void main(String[] args) throws Exception {
         //Declaração de variaveis
@@ -31,7 +31,6 @@ public class Main {
         //Definição de classes
         class quarto {
             int id, numero, capacidade;
-            boolean estaOcupado;
         }
         class hospede{
             int id;
@@ -225,6 +224,38 @@ public class Main {
         catch(Exception e)
         {}
     }
+    //Funções de acesso a ficheiros
+    private static void loadAllData() {
+        loadQuartosData();
+        loadHospedesData();
+        loadReservasData();
+    }
+
+    static void loadQuartosData() {
+
+    }
+
+    static void loadHospedesData(){
+
+    }
+
+    static void loadReservasData(){
+
+    }
+
+    static void saveAllData(){
+        saveHospedesData();
+        saveReservasData();
+    }
+
+    static void saveHospedesData(){
+
+    }
+
+    static void saveReservasData(){
+
+    }
+
 
 }
 
