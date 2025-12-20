@@ -5,7 +5,7 @@ Hospede: id, nome, documento
 Reserva: id, idQuarto, idHospede, numeroHospede, dataInicio, dataFim, ativa
 * */
 import java.io.*;
-import java.time.LocalDate;
+import java.time.LocalDate; //necessario para as datas
 import java.util.*;
 
 public class Main {
@@ -27,6 +27,7 @@ public class Main {
         Scanner teclado = new Scanner(System.in); //Definição de "teclado" como input
 
         //loadAllData();
+        //IMPLEMENTAR: É necessário verificar todas as reservas versus a data atual para atualizar aquelas que já terminaram
 
         do { //Esta função de DO, tem como objectivo repetir o menu enquanto o utilizador não escolher a opção 0 para sair
             showMainMenu(); //Chama a função que desenha o Menu Principal
@@ -217,32 +218,31 @@ public class Main {
         loadHospedesData();
         loadReservasData();
     }
-
+    //Carregar dados relativamente aos Quartos
     static void loadQuartosData() {
 
     }
-
+    //Carregar dados relativamente aos Hospedes
     static void loadHospedesData(){
 
     }
-
+    //Carregar dados relativamente as Reservas
     static void loadReservasData(){
 
     }
-
+    //Guardar todos os dados. Chama as duas funções especificas
     static void saveAllData(){
         saveHospedesData();
         saveReservasData();
     }
-
+    //Guardar dados relativamente aos hospedes
     static void saveHospedesData(){
 
     }
-
+    //Guardar dados relativamente as reservas
     static void saveReservasData(){
 
     }
-
 
 }
 
