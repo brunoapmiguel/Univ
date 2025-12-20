@@ -1,4 +1,4 @@
-id;numero;capacidade;estaOcupado
+id,numero,capacidade,estaOcupado
 1;101;6;0
 2;102;6;0
 3;103;6;0

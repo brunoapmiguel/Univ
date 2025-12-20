@@ -4,16 +4,29 @@ Quarto: id, numero, capacidade, estaOcupado
 Hospede: id, nome, documento
 Reserva: id, idQuarto, idHospede, numeroHospede, dataInicio, dataFim, ativa
 * */
-
+import java.io.*;
+import java.time.LocalDate;
 import java.util.*;
 
 public class App {
+    //Constantes
+    static final int maxQuartos = 200;
+    static final int maxHospedes = 1000;
+    static final int maxReservas = 1000;
+
+    //Ficheiros
+    static final String fQuartos = "quartos.csv";
+    static final String fHospedes = "hospedes.csv";
+    static final String fReservas = "reservas.csv";
+
     public static void main(String[] args) throws Exception {
-        Scanner teclado = new Scanner(System.in); //Definição de "teclado" como input
         //Declaração de variaveis
         int opcMenu, opcSubMenu; //variaveis de menu
         String numDocumentoHospede; //variavel para receber o numero de CC do hospede
         int numPessoas, numQuarto, numReserva; //Variaveis para o Numero de Pessoas, Numero de Quarto e Numero de Reserva
+        Scanner teclado = new Scanner(System.in); //Definição de "teclado" como input
+
+        //loadAllData();
 
         //Definição de classes
         class quarto {
@@ -38,15 +51,15 @@ public class App {
                     opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
                     switch (opcSubMenu) {
                         case 1:
-                            System.out.println("RESERVAS -> Listar todos os Quartos"); //Cabeçalho
+                            System.out.println("RESERVAS -> Listar todos os Quartos\n"); //Cabeçalho
                             listarTodosOsQuartos(); //Chama a função que vai listar todos os quartos
                             break;
                         case 2:
-                            System.out.println("RESERVAS -> Listar Quartos Livres"); //Cabeçalho
+                            System.out.println("RESERVAS -> Listar Quartos Livres\n"); //Cabeçalho
                             listarQuartosLivres(); //Chama a função que vai listar os quartos livres
                             break;
                         case 3:
-                            System.out.println("RESERVAS -> Listar Quartos Ocupados"); //Cabeçalho
+                            System.out.println("RESERVAS -> Listar Quartos Ocupados\n"); //Cabeçalho
                             listarQuartosOcupados(); //Chama a função que vai listar os quartos ocupados
                             break;
                     }
@@ -56,17 +69,17 @@ public class App {
                     opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
                     switch (opcSubMenu) {
                         case 1:
-                            System.out.println("HOSPEDES -> Listar Hospedes"); //Cabeçalho
+                            System.out.println("HOSPEDES -> Listar Hospedes\n"); //Cabeçalho
                             listarHospedes(); //Chama a função que vai listar os hospedes
                             break;
                         case 2:
-                            System.out.println("HOSPEDES -> Procurar Hospede por documento"); //Cabeçalho
+                            System.out.println("HOSPEDES -> Procurar Hospede por documento\n"); //Cabeçalho
                             System.out.print("Insira o número do documento (CC) do Hospede: ");  //Pede o CC do hospede
                             numDocumentoHospede = teclado.nextLine(); //Recebe o numero de CC. (AINDA FALTA VALIDAR O FORMATO)
                             procurarHospedePorDocumento();  //Chama a função que mostrar o hospede correspondente
                             break;
                         case 3:
-                            System.out.println("HOSPEDES -> Editar Hospede"); //Cabeçalho
+                            System.out.println("HOSPEDES -> Editar Hospede\n"); //Cabeçalho
                             System.out.print("Insira o número do documento (CC) do Hospede: ");  //Pede o CC do hospede
                             numDocumentoHospede = teclado.nextLine(); //Recebe o numero de CC. (AINDA FALTA VALIDAR O FORMATO)
                             editarHospede(); //Chama a função que vai permitir editar os dados do hospede
@@ -78,35 +91,35 @@ public class App {
                     opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
                     switch (opcSubMenu) {
                         case 1:
-                            System.out.println("RESERVAS -> Encontrar Quarto Livre por capacidade"); //Cabeçalho
+                            System.out.println("RESERVAS -> Encontrar Quarto Livre por capacidade\n"); //Cabeçalho
                             System.out.print("Insira o número de pessoas: "); //Pede o numero de pessoas (INTEGER)
                             numPessoas = teclado.nextInt(); //Receber o numero de pessoas
                             encontrarQuartoLivrePorCapacidade(); //Chamar a função que vai encontrar os quartos livres para a capacidade desejada
                             break;
                         case 2:
-                            System.out.println("RESERVAS -> Selecionar Quarto especifico"); //Cabeçalho
+                            System.out.println("RESERVAS -> Selecionar Quarto especifico\n"); //Cabeçalho
                             System.out.print("Insira o número do Quarto: "); //Pede o numero do quarto (INTEGER)
                             numQuarto = teclado.nextInt(); //Receber o numero de quarto
                             selecionarQuartoEspecifico(); //Função que vai escolher um quarto especifico para a reserva
                             break;
                         case 3:
-                            System.out.println("RESERVAS -> Listar todas as Reservas"); //Cabeçalho
+                            System.out.println("RESERVAS -> Listar todas as Reservas\n"); //Cabeçalho
                             listarTodasAsReservas(); //Chama a função que vai listar todas as reservas
                             break;
                         case 4:
-                            System.out.println("RESERVAS -> Listar Reserva por Quarto"); //Cabeçalho
+                            System.out.println("RESERVAS -> Listar Reserva por Quarto\n"); //Cabeçalho
                             System.out.print("Insira o número do Quarto: "); //Pede o número do quarto (INTEGER)
                             numQuarto = teclado.nextInt(); //Receber o numero de quarto
                             listarReservaPorQuarto();
                             break;
                         case 5:
-                            System.out.println("RESERVAS -> Listar Reserva por Hospede"); //Cabeçalho
+                            System.out.println("RESERVAS -> Listar Reserva por Hospede\n"); //Cabeçalho
                             System.out.print("Insira o número do documento (CC) do Hospede: "); //Pedir o numero de CC do hospede
                             numDocumentoHospede = teclado.nextLine(); //Recebe o numero de CC. (AINDA FALTA VALIDAR O FORMATO)
                             listarReservaPorHospede();
                             break;
                         case 6:
-                            System.out.println("RESERVAS -> Editar Reserva"); //Cabeçalho
+                            System.out.println("RESERVAS -> Editar Reserva\n"); //Cabeçalho
                             System.out.print("Insira o ID da Reserva: "); //Pedir o ID da reserva
                             numReserva = teclado.nextInt(); //Recebe o numero da revserva (INTEGER)
                             editarReserva(); //Chama a função que vai permitir editar a reserva
@@ -115,6 +128,7 @@ public class App {
                     break;
             }
         } while (opcMenu != 0); //Repetir equanto a opção escolhida não for 0. Se for 0, sai
+        //saveAllData(); //Guarda toda a informação
     }
 
     //Desenhar o MENU PRINCIPAL
@@ -124,7 +138,7 @@ public class App {
         System.out.println("2 - Hospedes");
         System.out.println("3 - Reservas");
         System.out.println("0 - Sair");
-        System.out.print("Escolha uma opcao: ");
+        System.out.print("\nEscolha uma opcao: ");
     }
 
     //Desenhar SUB-MENUS
@@ -134,7 +148,7 @@ public class App {
         System.out.println("2 - Listar Quartos livres");
         System.out.println("3 - Listar Quartos ocupados");
         System.out.println("0 - Sair");
-        System.out.print("Escolha uma opcao: ");
+        System.out.print("\nEscolha uma opcao: ");
     }
     //Desenhar o Menu de Hospedes
     private static void showMenuHospedes(){
@@ -143,7 +157,7 @@ public class App {
         System.out.println("2 - Procurar Hospede por documento");
         System.out.println("3 - Editar Hospede");
         System.out.println("0 - Sair");
-        System.out.print("Escolha uma opcao: ");
+        System.out.print("\nEscolha uma opcao: ");
     }
     //Desenhar o Menu de Reservas
     private static void showMenuReservas(){
@@ -155,7 +169,7 @@ public class App {
         System.out.println("5 - Listar Reservas por Hospede"); //presentes ou futuras
         System.out.println("6 - Editar Reserva"); //numero de hospede ou datas e revalidar capacidade e conflitos
         System.out.println("0 - Sair");
-        System.out.print("Escolha uma opcao: ");
+        System.out.print("\nEscolha uma opcao: ");
     }
 
     //Funções de QUARTOS
@@ -173,6 +187,7 @@ public class App {
     private static void listarHospedes(){
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
+
     private static void procurarHospedePorDocumento(){
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
@@ -202,7 +217,7 @@ public class App {
     //Função para aguardar um ENTER por parte do utilizador antes de mudar o menu
     private static void pressEnterToContinue()
     {
-        System.out.println("Press ENTER key to continue..."); //Mostrar a mensagem a pedir que o utilizador pressione a tecla ENTER
+        System.out.println("\nPress ENTER key to continue..."); //Mostrar a mensagem a pedir que o utilizador pressione a tecla ENTER
         try
         {
             System.in.read();
@@ -210,5 +225,97 @@ public class App {
         catch(Exception e)
         {}
     }
+/*
+    //Funções de acesso a ficheiros
+    private static void loadAllData(){
+        loadQuartosData();
+        loadHospedesData();
+        loadReservasData();
+        // calcular próximos IDs
+        for (Hospede h : hospedes) if (h != null) nextHospedeId = Math.max(nextHospedeId, h.id + 1);
+        for (Reserva r : reservas) if (r != null) nextReservaId = Math.max(nextReservaId, r.id + 1);
+    }
+
+    static void loadQuartosData(){
+        int cnt = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader(fQuartos))) {
+            String line;
+            while ((line = br.readLine()) != null && cnt < maxQuartos) {
+                if (line.trim().isEmpty()) continue;
+                String[] p = line.split(",");
+                int id = Integer.parseInt(p[0]);
+                String numero = p[1];
+                int cap = Integer.parseInt(p[2]);
+                boolean ocupado = Boolean.parseBoolean(p[3]);
+                quartos[cnt++] = new Quarto(id, numero, cap, ocupado);
+            }
+        } catch (IOException e) {
+            System.out.println("\nERRO: Não foi possível abrir o ficheiro: " + fQuartos + " (" + e.getMessage() + ")");
+        }
+    }
+
+    static void loadHospedesData(){
+        int cnt = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader(fHospedes))) {
+            String line;
+            while ((line = br.readLine()) != null && cnt < maxHospedes) {
+                if (line.trim().isEmpty()) continue;
+                String[] p = line.split(",");
+                hospedes[cnt++] = new Hospede(Integer.parseInt(p[0]), p[1], p[2]);
+            }
+        } catch (IOException e) {
+            System.out.println("\nERRO: Não foi possível abrir o ficheiro: " + fHospedes + " (" + e.getMessage() + ")");
+        }
+    }
+
+    static void loadReservasData(){
+        int cnt = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader(fReservas))) {
+            String line;
+            while ((line = br.readLine()) != null && cnt < maxReservas) {
+                if (line.trim().isEmpty()) continue;
+                String[] p = line.split(",");
+                reservas[cnt++] = new Reserva(
+                        Integer.parseInt(p[0]),
+                        Integer.parseInt(p[1]),
+                        Integer.parseInt(p[2]),
+                        Integer.parseInt(p[3]),
+                        LocalDate.parse(p[4]),
+                        LocalDate.parse(p[5]),
+                        Boolean.parseBoolean(p[6])
+                );
+            }
+        } catch (IOException e) {
+            System.out.println("\nERRO: Não foi possível abrir o ficheiro: " + fReservas + " (" + e.getMessage() + ")");
+        }
+    }
+    static void saveAllData(){
+        saveHospedesData();
+        saveReservasData();
+    }
+
+    static void saveHospedesData(){
+        try (PrintWriter pw = new PrintWriter(new FileWriter(fHospedes))) {
+            for (Hospede h : hospedes) {
+                if (h == null) continue;
+                pw.println(h.id + "," + h.nome + "," + h.documento);
+            }
+        } catch (IOException e) {
+            System.out.println("ERRO a gravar " + fHospedes + ": " + e.getMessage());
+        }
+    }
+
+    static void saveReservasData(){
+        try (PrintWriter pw = new PrintWriter(new FileWriter(fReservas))) {
+            for (Reserva r : reservas) {
+                if (r == null) continue;
+                pw.println(r.id + "," + r.idQuarto + "," + r.idHospede + "," + r.numeroHospedes + "," +
+                        r.dataInicio + "," + r.dataFim + "," + r.ativa);
+            }
+        } catch (IOException e) {
+            System.out.println("ERRO a gravar " + fReservas + ": " + e.getMessage());
+        }
+    }
+ */
 }
 
