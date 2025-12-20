@@ -2,7 +2,7 @@ public class Reserva {
     private int id;
     private int idQuarto;
     private int idHospede;
-    private int numeroHospede;
+    private int numeroHospedes;
     private int dataInicio;
     private int dataFim;
     private boolean estaAtiva; //ter em conta que o estarAtiva deve ficar 0, caso a data já tenha passado
@@ -14,8 +14,8 @@ public class Reserva {
     public void setIdHospede(int idHospede) {
         this.idHospede = idHospede;
     }
-    public void setNumeroHospede(int numeroHospede) {
-        this.numeroHospede = numeroHospede;
+    public void setNumeroHospede(int numeroHospedes) {
+        this.numeroHospedes = numeroHospedes;
     }
     public void setDataInicio(int dataInicio) {
         this.dataInicio = dataInicio;
@@ -37,8 +37,8 @@ public class Reserva {
     public int getIdHospede() {
         return idHospede;
     }
-    public int getNumeroHospede() {
-        return numeroHospede;
+    public int getNumeroHospedes() {
+        return numeroHospedes;
     }
     public int getDataInicio() {
         return dataInicio;

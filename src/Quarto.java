@@ -11,6 +11,15 @@ public class Quarto {
     }
 
     //Getters
+    public int getIdQuarto() {
+        return this.id;
+    }
+    public int getNumero() {
+        return this.numero;
+    }
+    public int getCapacidade() {
+        return this.capacidade;
+    }
     public boolean getEstaOcupado(){
         return this.estaOcupado;
     }
