@@ -28,19 +28,6 @@ public class Main {
 
         //loadAllData();
 
-        //Definição de classes
-        class quarto {
-            int id, numero, capacidade;
-        }
-        class hospede{
-            int id;
-            String nome, documento;
-        }
-        class reserva{
-            int id, idQuarto, idHospede, numeroHospede, dataInicio, dataFim;
-            boolean ativa;
-        }
-
         do { //Esta função de DO, tem como objectivo repetir o menu enquanto o utilizador não escolher a opção 0 para sair
             showMainMenu(); //Chama a função que desenha o Menu Principal
             opcMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
