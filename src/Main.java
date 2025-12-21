@@ -231,14 +231,14 @@ public class Main {
             String line;
             while ((line = reader.readLine()) != null && cnt < maxQuartos) { //Ler todas as linhas até apanhar valor nulo
                 //System.out.println(line);
-                String[] quartos = line.split(";");
-                id = Integer.parseInt(quartos[0]);
-                numero = Integer.parseInt(quartos[1]);
-                capacidade = Integer.parseInt(quartos[2]);
-                estaOcupado = Boolean.parseBoolean(quartos[3]);
+                String[] quartosLine = line.split(";");
+                id = Integer.parseInt(quartosLine[0]);
+                numero = Integer.parseInt(quartosLine[1]);
+                capacidade = Integer.parseInt(quartosLine[2]);
+                estaOcupado = Boolean.parseBoolean(quartosLine[3]);
 
                 //quartos[cnt++] = new Quarto(id, numero, capacidade, estaOcupado);
-                cnt++;
+                //cnt++;
             }
         }
         catch(FileNotFoundException e){ //Ficheiro não encontrado
