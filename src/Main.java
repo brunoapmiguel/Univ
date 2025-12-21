@@ -1,9 +1,3 @@
-/*
-* Classes
-Quarto: id, numero, capacidade, estaOcupado
-Hospede: id, nome, documento
-Reserva: id, idQuarto, idHospede, numeroHospede, dataInicio, dataFim, ativa
-* */
 import java.io.*;
 import java.time.LocalDate; //necessario para as datas
 import java.util.*;
@@ -19,7 +13,13 @@ public class Main {
     static final String fileHospedes = "hospedes.csv";
     static final String fileReservas = "reservas.csv";
 
+    //Arrays
+    static Quarto[] quartos = new Quarto[maxQuartos];
+    static Hospede[] hospedes = new Hospede[maxHospedes];
+    static Reserva[] reservas = new Reserva[maxReservas];
+
     public static void main(String[] args) throws Exception {
+        //loadQuartosData();
         //Declaração de variaveis
         int opcMenu, opcSubMenu; //variaveis de menu
         String numDocumentoHospede; //variavel para receber o numero de CC do hospede
@@ -220,15 +220,67 @@ public class Main {
     }
     //Carregar dados relativamente aos Quartos
     static void loadQuartosData() {
+        //BufferedReader + FileReader
+        int cnt = 0;
+        int id;
+        int numero;
+        int capacidade;
+        boolean estaOcupado;
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileQuartos))) {
+           // System.out.println("Ficheiro existente");
+            String line;
+            while ((line = reader.readLine()) != null && cnt < maxQuartos) { //Ler todas as linhas até apanhar valor nulo
+                //System.out.println(line);
+                String[] quartos = line.split(";");
+                id = Integer.parseInt(quartos[0]);
+                numero = Integer.parseInt(quartos[1]);
+                capacidade = Integer.parseInt(quartos[2]);
+                estaOcupado = Boolean.parseBoolean(quartos[3]);
 
+                //quartos[cnt++] = new Quarto(id, numero, capacidade, estaOcupado);
+                cnt++;
+            }
+        }
+        catch(FileNotFoundException e){ //Ficheiro não encontrado
+            System.out.println("ERRO: Ficheiro '" + fileQuartos + "' não encontrado");
+        }
+        catch(IOException e){ //Outros erros de acesso IO
+            System.out.println("ERRO: Por favor, contacte o suporte!");
+        }
     }
     //Carregar dados relativamente aos Hospedes
     static void loadHospedesData(){
-
+        //BufferedReader + FileReader
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileHospedes))) {
+            // System.out.println("Ficheiro existente");
+            String line;
+            while ((line = reader.readLine()) != null) { //Ler todas as linhas até apanhar valor nulo
+                //System.out.println(line);
+            }
+        }
+        catch(FileNotFoundException e){ //Ficheiro não encontrado
+            System.out.println("ERRO: Ficheiro '" + fileHospedes + "' não encontrado");
+        }
+        catch(IOException e){ //Outros erros de acesso IO
+            System.out.println("ERRO: Por favor, contacte o suporte!");
+        }
     }
     //Carregar dados relativamente as Reservas
     static void loadReservasData(){
-
+        //BufferedReader + FileReader
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileReservas))) {
+            // System.out.println("Ficheiro existente");
+            String line;
+            while ((line = reader.readLine()) != null) { //Ler todas as linhas até apanhar valor nulo
+                //System.out.println(line);
+            }
+        }
+        catch(FileNotFoundException e){ //Ficheiro não encontrado
+            System.out.println("ERRO: Ficheiro '" + fileReservas + "' não encontrado");
+        }
+        catch(IOException e){ //Outros erros de acesso IO
+            System.out.println("ERRO: Por favor, contacte o suporte!");
+        }
     }
     //Guardar todos os dados. Chama as duas funções especificas
     static void saveAllData(){

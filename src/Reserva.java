@@ -5,7 +5,7 @@ public class Reserva {
     private int numeroHospedes;
     private int dataInicio;
     private int dataFim;
-    private boolean estaAtiva; //ter em conta que o estarAtiva deve ficar 0, caso a data já tenha passado
+    private boolean estaAtiva; //ter em conta que o estaAtiva deve ficar 0, caso a data já tenha passado
 
     //Setters
     public void setIdQuarto(int idQuarto) {
