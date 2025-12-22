@@ -62,6 +62,7 @@ public class Reserva {
     }
     @Override
     public String toString(){
-        return String.format("Reserva{id="+id+", idQuarto="+idQuarto+", idHospede="+idHospede+", numeroHospedes="+numeroHospedes+", dataInicio="+dataInicio+", dataFim="+dataFim+", estaAtiva="+estaAtiva+"}");
+        return String.format("Reserva{id="+id+", idQuarto="+idQuarto+", idHospede="+idHospede+", numeroHospedes="+
+                numeroHospedes+", dataInicio="+dataInicio+", dataFim="+dataFim+", estaAtiva="+estaAtiva+"}");
     }
 }
