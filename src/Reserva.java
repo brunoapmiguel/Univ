@@ -7,6 +7,16 @@ public class Reserva {
     private int dataFim;
     private boolean estaAtiva; //ter em conta que o estaAtiva deve ficar 0, caso a data já tenha passado
 
+    //Consctuctor
+    public Reserva(int id, int idQuarto, int idHospede, int numeroHospedes, int dataInicio, int dataFim, boolean estaAtiva) {
+        this.id = id;
+        this.idQuarto = idQuarto;
+        this.idHospede = idHospede;
+        this.numeroHospedes = numeroHospedes;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+        this.estaAtiva = estaAtiva;
+    }
     //Setters
     public void setIdQuarto(int idQuarto) {
         this.idQuarto = idQuarto;
@@ -48,5 +58,9 @@ public class Reserva {
     }
     public boolean getEstaAtiva() {
         return estaAtiva;
+    }
+
+    public String toString(){
+        return String.format("Reserva{id="+id+", idQuarto="+idQuarto+", idHospede="+idHospede+", numeroHospedes="+numeroHospedes+", dataInicio="+dataInicio+", dataFim="+dataFim+", estaAtiva="+estaAtiva+"}");
     }
 }

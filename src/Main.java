@@ -19,7 +19,7 @@ public class Main {
     static Reserva[] reservas = new Reserva[maxReservas];
 
     public static void main(String[] args) throws Exception {
-        //loadQuartosData();
+        loadQuartosData();
         //Declaração de variaveis
         int opcMenu, opcSubMenu; //variaveis de menu
         String numDocumentoHospede; //variavel para receber o numero de CC do hospede
@@ -231,14 +231,14 @@ public class Main {
             String line;
             while ((line = reader.readLine()) != null && cnt < maxQuartos) { //Ler todas as linhas até apanhar valor nulo
                 //System.out.println(line);
-                String[] quartosLine = line.split(";");
+                String[] quartosLine = line.split(",");
                 id = Integer.parseInt(quartosLine[0]);
                 numero = Integer.parseInt(quartosLine[1]);
                 capacidade = Integer.parseInt(quartosLine[2]);
                 estaOcupado = Boolean.parseBoolean(quartosLine[3]);
-
-                //quartos[cnt++] = new Quarto(id, numero, capacidade, estaOcupado);
-                //cnt++;
+                quartos[cnt] = new Quarto(id, numero, capacidade, estaOcupado);
+                System.out.println(quartos[cnt]);
+                cnt++;
             }
         }
         catch(FileNotFoundException e){ //Ficheiro não encontrado

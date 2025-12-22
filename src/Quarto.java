@@ -4,6 +4,14 @@ public class Quarto {
     private int capacidade;
     private boolean estaOcupado;
 
+    //Constructor
+    public Quarto(int id, int numero, int capacidade, boolean estaOcupado) {
+        this.id = id;
+        this.numero = numero;
+        this.capacidade = capacidade;
+        this.estaOcupado = estaOcupado;
+    }
+
     //Métodos - acções -> public
     //Setters
     public void setEstaOcupado(boolean estaOcupado){
@@ -22,5 +30,9 @@ public class Quarto {
     }
     public boolean getEstaOcupado(){
         return this.estaOcupado;
+    }
+
+    public String toString(){
+        return String.format("Quarto{id="+id+", numero="+numero+", capacidade="+capacidade+", estaOcupado="+estaOcupado+"}");
     }
 }
