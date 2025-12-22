@@ -37,35 +37,39 @@ public class Main {
                             break;
                         case 3: listarQuartosOcupados(); //Chama a função que vai listar os quartos ocupados
                             break;
+                        case 4: listarReservasDeQuarto(); //Chama a função que vai listar os quartos ocupados
+                            break;
                     }
                     break;
                 case 2: //HOSPEDES
                     showMenuHospedes(); //Chama a fução que desenha o menu de hospedes
                     opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
                     switch (opcSubMenu) {
-                        case 1: listarHospedes(); //Chama a função que vai listar os hospedes
+                        case 1: adicionarHospede(); //Chama a função que vai adicionar hospedes
                             break;
-                        case 2: procurarHospedePorDocumento();  //Chama a função que mostrar o hospede correspondente
+                        case 2: listarHospedes(); //Chama a função que vai listar os hospedes
                             break;
-                        case 3: editarHospede(); //Chama a função que vai permitir editar os dados do hospede
+                        case 3: procurarHospedePorDocumento();  //Chama a função que mostrar o hospede correspondente
+                            break;
+                        case 4: editarHospede(); //Chama a função que vai permitir editar os dados do hospede
                             break;
                     }
                     break;
                 case 3: //RESERVAS
-                    showMenuReservas(); //Chama a fução que desenha o menu de reservas
+                    showMenuReservas(); //Chama a função que desenha o menu de reservas
                     opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
                     switch (opcSubMenu) {
                         case 1: criarReserva(); //Chamar a função que vai encontrar os quartos livres para a capacidade desejada
                             break;
-                        case 2: selecionarQuartoEspecifico(); //Função que vai escolher um quarto especifico para a reserva
+                        case 2: listarTodasAsReservas(); //Chama a função que vai listar todas as reservas
                             break;
-                        case 3: listarTodasAsReservas(); //Chama a função que vai listar todas as reservas
+                        case 3: listarReservaPorQuarto();
                             break;
-                        case 4: listarReservaPorQuarto();
+                        case 4: listarReservaPorHospede();
                             break;
-                        case 5: listarReservaPorHospede();
+                        case 5: editarReserva(); //Chama a função que vai permitir editar a reserva
                             break;
-                        case 6: editarReserva(); //Chama a função que vai permitir editar a reserva
+                        case 6: cancelarReserva();
                             break;
                     }
                     break;
@@ -89,15 +93,17 @@ public class Main {
         System.out.println("1 - Listar todos os Quartos");
         System.out.println("2 - Listar Quartos livres");
         System.out.println("3 - Listar Quartos ocupados");
+        System.out.println("4 - Listar Reservas de Quarto");
         System.out.println("0 - Sair");
         System.out.print("\nEscolha uma opcao: ");
     }
     //Desenhar o Menu de Hospedes
     private static void showMenuHospedes(){
         System.out.println("== HOSPEDES ==");
-        System.out.println("1 - Listar Hospedes");
-        System.out.println("2 - Procurar Hospede por documento");
-        System.out.println("3 - Editar Hospede");
+        System.out.println("1 - Adicionar Hospede");
+        System.out.println("2 - Listar Hospedes");
+        System.out.println("3 - Procurar Hospede por documento");
+        System.out.println("4 - Editar Hospede");
         System.out.println("0 - Sair");
         System.out.print("\nEscolha uma opcao: ");
     }
@@ -105,16 +111,16 @@ public class Main {
     private static void showMenuReservas(){
         System.out.println("== RESERVAS ==");
         System.out.println("1 - Criar Reserva");
-        System.out.println("2 - Selecionar Quarto especifico"); //Se indisponivel sugerir automaticamente uma alternativa adequada
-        System.out.println("3 - Listar todas as Reservas");
-        System.out.println("4 - Listar Reservas por Quarto"); //presentes ou futuras
-        System.out.println("5 - Listar Reservas por Hospede"); //presentes ou futuras
-        System.out.println("6 - Editar Reserva"); //numero de hospede ou datas e revalidar capacidade e conflitos
+        System.out.println("2 - Listar todas as Reservas");
+        System.out.println("3 - Listar Reservas por Quarto"); //presentes ou futuras
+        System.out.println("4 - Listar Reservas por Hospede"); //presentes ou futuras
+        System.out.println("5 - Editar Reserva"); //numero de hospede ou datas e revalidar capacidade e conflitos
+        System.out.println("6 - Cancelar Reserva");
         System.out.println("0 - Sair");
         System.out.print("\nEscolha uma opcao: ");
     }
     //Funções de QUARTOS
-    private static void listarTodosOsQuartos(){
+    private static void listarTodosOsQuartos(){  //VALIDADO
         System.out.println("RESERVAS -> Listar todos os Quartos\n"); //Cabeçalho
         for (Quarto q : quartos) {
             if (q != null) {
@@ -124,10 +130,10 @@ public class Main {
         }
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
-    private static void listarQuartosLivres(){
+    private static void listarQuartosLivres(){  //VAlIDADO
         System.out.println("RESERVAS -> Listar Quartos Livres\n"); //Cabeçalho
         for (Quarto q : quartos) {
-            if (q != null && q.getEstaOcupado() == false) {
+            if (q != null && !q.getEstaOcupado()) {
                 String linha = q.getIdQuarto() + "," + q.getNumero() + "," + q.getCapacidade() + "," + q.getEstaOcupado();
                 System.out.println(linha);
             }
@@ -144,7 +150,15 @@ public class Main {
         }
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
+    private static void listarReservasDeQuarto() {
+        System.out.println("RESERVAS -> Listar Reservas de Quarto\n");
+
+    }
+
     //Funções de HOSPEDES
+    private static void adicionarHospede() {
+        System.out.println("HOSPEDES -> Adicionar Hospede\n"); //Cabeçalho
+    }
     private static void listarHospedes(){
         System.out.println("HOSPEDES -> Listar Hospedes\n"); //Cabeçalho
         for (Hospede h : hospedes) {
@@ -210,14 +224,7 @@ public class Main {
 
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
-    private static void selecionarQuartoEspecifico(){
-        int numQuarto; //variavel para receber o numero do Quarto
-        Scanner teclado = new Scanner(System.in);
-        System.out.println("RESERVAS -> Selecionar Quarto especifico\n"); //Cabeçalho
-        System.out.print("Insira o número do Quarto: "); //Pede o numero do quarto (INTEGER)
-        numQuarto = teclado.nextInt(); //Receber o numero de quarto
-        pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
-    }
+
     private static void listarTodasAsReservas(){
         System.out.println("RESERVAS -> Listar todas as Reservas\n"); //Cabeçalho
         for (Reserva r : reservas) {
@@ -225,7 +232,7 @@ public class Main {
                 String linha = r.getId() + "," + r.getIdQuarto() + "," + r.getIdHospede() + "," +
                         r.getNumeroHospedes() + "," + r.getDataInicio() + "," + r.getDataFim() + "," +
                         r.getEstaAtiva();
-                System.out.print(linha);
+                System.out.println(linha);
             }
         }
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
@@ -292,6 +299,13 @@ public class Main {
         System.out.print("Insira o ID da Reserva: "); //Pedir o ID da reserva
         numReserva = teclado.nextInt(); //Recebe o numero da revserva (INTEGER)
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
+    }
+    private static void cancelarReserva(){
+        int numReserva;
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("RESERVAS -> Cancelar Reserva\n");
+        System.out.print("Insira o ID da Reserva: ");
+        numReserva = teclado.nextInt();
     }
     //Funções de acesso a ficheiros
     private static void loadAllData() {
