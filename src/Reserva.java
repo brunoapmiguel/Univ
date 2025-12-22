@@ -25,7 +25,7 @@ public class Reserva {
     public void setIdHospede(int idHospede) {
         this.idHospede = idHospede;
     }
-    public void setNumeroHospede(int numeroHospedes) {
+    public void setNumeroHospedes(int numeroHospedes) {
         this.numeroHospedes = numeroHospedes;
     }
     public void setDataInicio(LocalDate dataInicio) {

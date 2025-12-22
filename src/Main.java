@@ -29,6 +29,8 @@ public class Main {
         Scanner teclado = new Scanner(System.in); //Definição de "teclado" como input
 
         loadAllData();
+        saveHospedesData();
+        saveReservasData();
         //IMPLEMENTAR: É necessário verificar todas as reservas versus a data atual para atualizar aquelas que já terminaram
 
         do { //Esta função de DO, tem como objectivo repetir o menu enquanto o utilizador não escolher a opção 0 para sair
@@ -304,6 +306,7 @@ public class Main {
                 estaAtiva = Boolean.parseBoolean(reservasLine[6]);
                 reservas[cnt] = new Reserva(id, idQuarto, idHospede, numeroHospedes, dataInicio, dataFim, estaAtiva);
                 //System.out.println(reservas[cnt]);
+
                 cnt++;
             }
         }
@@ -321,11 +324,31 @@ public class Main {
     }
     //Guardar dados relativamente aos hospedes
     static void saveHospedesData(){
-
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileHospedes))) {
+            for (Hospede h : hospedes) {
+                if (h != null) {
+                    String linha = h.getId() + "," + h.getNome() + "," + h.getDocumento();
+                    writer.write(linha);
+                    writer.newLine();
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("ERRO: Não foi possivel gravar " + fileHospedes + ": " + e.getMessage());
+        }
     }
     //Guardar dados relativamente as reservas
     static void saveReservasData(){
-
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileReservas))) {
+            for (Reserva r : reservas) {
+                if (r != null) {
+                    String linha = r.getId() + "," + r.getIdQuarto() + "," + r.getIdHospede() + "," + r.getNumeroHospedes() + "," + r.getDataInicio() + "," + r.getDataFim() + "," + r.getEstaAtiva();
+                    writer.write(linha);
+                    writer.newLine();
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("ERRO: Não foi possivel gravar " + fileReservas + ": " + e.getMessage());
+        }
     }
 }
 
