@@ -12,7 +12,6 @@ public class Quarto {
         this.estaOcupado = estaOcupado;
     }
 
-    //Métodos - acções -> public
     //Setters
     public void setEstaOcupado(boolean estaOcupado){
         this.estaOcupado = estaOcupado;
@@ -31,7 +30,7 @@ public class Quarto {
     public boolean getEstaOcupado(){
         return this.estaOcupado;
     }
-
+    @Override
     public String toString(){
         return String.format("Quarto{id="+id+", numero="+numero+", capacidade="+capacidade+", estaOcupado="+estaOcupado+"}");
     }

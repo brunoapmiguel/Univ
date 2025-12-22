@@ -1,14 +1,15 @@
+import java.time.LocalDate;
 public class Reserva {
     private int id;
     private int idQuarto;
     private int idHospede;
     private int numeroHospedes;
-    private int dataInicio;
-    private int dataFim;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
     private boolean estaAtiva; //ter em conta que o estaAtiva deve ficar 0, caso a data já tenha passado
 
-    //Consctuctor
-    public Reserva(int id, int idQuarto, int idHospede, int numeroHospedes, int dataInicio, int dataFim, boolean estaAtiva) {
+    //Constuctor
+    public Reserva(int id, int idQuarto, int idHospede, int numeroHospedes, LocalDate dataInicio, LocalDate dataFim, boolean estaAtiva) {
         this.id = id;
         this.idQuarto = idQuarto;
         this.idHospede = idHospede;
@@ -27,10 +28,10 @@ public class Reserva {
     public void setNumeroHospede(int numeroHospedes) {
         this.numeroHospedes = numeroHospedes;
     }
-    public void setDataInicio(int dataInicio) {
+    public void setDataInicio(LocalDate dataInicio) {
         this.dataInicio = dataInicio;
     }
-    public void setDataFim(int dataFim) {
+    public void setDataFim(LocalDate dataFim) {
         this.dataFim = dataFim;
     }
     public void setEstaAtiva(boolean estaAtiva) {
@@ -50,16 +51,16 @@ public class Reserva {
     public int getNumeroHospedes() {
         return numeroHospedes;
     }
-    public int getDataInicio() {
+    public LocalDate getDataInicio() {
         return dataInicio;
     }
-    public int getDataFim() {
+    public LocalDate getDataFim() {
         return dataFim;
     }
     public boolean getEstaAtiva() {
         return estaAtiva;
     }
-
+    @Override
     public String toString(){
         return String.format("Reserva{id="+id+", idQuarto="+idQuarto+", idHospede="+idHospede+", numeroHospedes="+numeroHospedes+", dataInicio="+dataInicio+", dataFim="+dataFim+", estaAtiva="+estaAtiva+"}");
     }

@@ -19,14 +19,16 @@ public class Main {
     static Reserva[] reservas = new Reserva[maxReservas];
 
     public static void main(String[] args) throws Exception {
-        loadQuartosData();
+        //loadQuartosData();
+        //loadHospedesData();
+        //loadReservasData();
         //Declaração de variaveis
         int opcMenu, opcSubMenu; //variaveis de menu
         String numDocumentoHospede; //variavel para receber o numero de CC do hospede
         int numPessoas, numQuarto, numReserva; //Variaveis para o Numero de Pessoas, Numero de Quarto e Numero de Reserva
         Scanner teclado = new Scanner(System.in); //Definição de "teclado" como input
 
-        //loadAllData();
+        loadAllData();
         //IMPLEMENTAR: É necessário verificar todas as reservas versus a data atual para atualizar aquelas que já terminaram
 
         do { //Esta função de DO, tem como objectivo repetir o menu enquanto o utilizador não escolher a opção 0 para sair
@@ -237,7 +239,7 @@ public class Main {
                 capacidade = Integer.parseInt(quartosLine[2]);
                 estaOcupado = Boolean.parseBoolean(quartosLine[3]);
                 quartos[cnt] = new Quarto(id, numero, capacidade, estaOcupado);
-                System.out.println(quartos[cnt]);
+                //System.out.println(quartos[cnt]);
                 cnt++;
             }
         }
@@ -250,12 +252,23 @@ public class Main {
     }
     //Carregar dados relativamente aos Hospedes
     static void loadHospedesData(){
+        int cnt = 0;
+        int id;
+        String nome;
+        String documento;
         //BufferedReader + FileReader
         try (BufferedReader reader = new BufferedReader(new FileReader(fileHospedes))) {
             // System.out.println("Ficheiro existente");
             String line;
-            while ((line = reader.readLine()) != null) { //Ler todas as linhas até apanhar valor nulo
+            while ((line = reader.readLine()) != null && cnt < maxHospedes) { //Ler todas as linhas até apanhar valor nulo
                 //System.out.println(line);
+                String[] hospedesLine = line.split(",");
+                id = Integer.parseInt(hospedesLine[0]);
+                nome = hospedesLine[1];
+                documento = hospedesLine[2];
+                hospedes[cnt] = new Hospede(id, nome, documento);
+                //System.out.println(hospedes[cnt]);
+                cnt++;
             }
         }
         catch(FileNotFoundException e){ //Ficheiro não encontrado
@@ -267,12 +280,31 @@ public class Main {
     }
     //Carregar dados relativamente as Reservas
     static void loadReservasData(){
+        int cnt = 0;
+        int id;
+        int idQuarto;
+        int idHospede;
+        int numeroHospedes;
+        LocalDate dataInicio;
+        LocalDate dataFim;
+        boolean estaAtiva;
         //BufferedReader + FileReader
         try (BufferedReader reader = new BufferedReader(new FileReader(fileReservas))) {
             // System.out.println("Ficheiro existente");
             String line;
-            while ((line = reader.readLine()) != null) { //Ler todas as linhas até apanhar valor nulo
+            while ((line = reader.readLine()) != null && cnt < maxReservas) { //Ler todas as linhas até apanhar valor nulo
                 //System.out.println(line);
+                String[] reservasLine = line.split(",");
+                id = Integer.parseInt(reservasLine[0]);
+                idQuarto = Integer.parseInt(reservasLine[1]);
+                idHospede = Integer.parseInt(reservasLine[2]);
+                numeroHospedes = Integer.parseInt(reservasLine[3]);
+                dataInicio = LocalDate.parse(reservasLine[4]);
+                dataFim = LocalDate.parse(reservasLine[5]);
+                estaAtiva = Boolean.parseBoolean(reservasLine[6]);
+                reservas[cnt] = new Reserva(id, idQuarto, idHospede, numeroHospedes, dataInicio, dataFim, estaAtiva);
+                //System.out.println(reservas[cnt]);
+                cnt++;
             }
         }
         catch(FileNotFoundException e){ //Ficheiro não encontrado
