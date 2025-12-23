@@ -37,7 +37,7 @@ public class Main {
                             break;
                         case 3: listarQuartosOcupados(); //Chama a função que vai listar os quartos ocupados
                             break;
-                        case 4: listarReservasDeQuarto(); //Chama a função que vai listar os quartos ocupados
+                        case 4: listarReservasDeQuarto(); //Chama a função que vai listar todas as reservas de um quarto
                             break;
                     }
                     break;
@@ -151,8 +151,29 @@ public class Main {
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
     private static void listarReservasDeQuarto() {
+        int numQuarto, currentIdQuarto = -1;
         System.out.println("RESERVAS -> Listar Reservas de Quarto\n");
-
+        Scanner teclado = new Scanner(System.in);
+        System.out.print("Insira o número do Quarto: ");  //Pede o numero do Quarto
+        numQuarto = teclado.nextInt();
+        for (Quarto q : quartos) {
+            if (q != null &&  q.getNumero() == numQuarto) {
+                currentIdQuarto = q.getIdQuarto();
+                break;
+            }
+        }
+        for (Reserva r : reservas) {
+            if (r != null) {
+                String linha = r.getId() + "," + r.getIdQuarto() + "," + r.getIdHospede() + "," +
+                        r.getNumeroHospedes() + "," + r.getDataInicio() + "," + r.getDataFim() + "," +
+                        r.getEstaAtiva();
+                if (r.getIdQuarto() == currentIdQuarto) {
+                    System.out.println(linha);
+                    break;
+                }
+            }
+        }
+        pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
 
     //Funções de HOSPEDES
