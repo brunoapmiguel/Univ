@@ -229,7 +229,7 @@ public class Main {
                     System.out.println("ID: " + h.getId());
                     System.out.println("Nome: " + h.getNome());
                     System.out.println("Documento: " + h.getDocumento());
-                    System.out.println("Por favor, insira os novos dados. Caso não queira alterar, presione apenas ENTER\n");
+                    System.out.println("\nPor favor, insira os novos dados. Caso não queira alterar, presione apenas ENTER\n");
                     System.out.print("Insira novo Nome do Hospede: ");
                     novoNomeHospede = teclado.nextLine();
                     if (novoNomeHospede != "") {
