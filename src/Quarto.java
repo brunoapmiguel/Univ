@@ -35,3 +35,4 @@ public class Quarto {
         return String.format("Quarto{id="+id+", numero="+numero+", capacidade="+capacidade+", estaOcupado="+estaOcupado+"}");
     }
 }
+

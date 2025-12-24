@@ -66,3 +66,4 @@ public class Reserva {
                 numeroHospedes+", dataInicio="+dataInicio+", dataFim="+dataFim+", estaAtiva="+estaAtiva+"}");
     }
 }
+

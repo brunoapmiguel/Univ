@@ -35,3 +35,4 @@ public class Hospede {
         return String.format("Hospede{id="+id+", nome="+nome+", documento="+documento+"}");
     }
 }
+
