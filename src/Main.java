@@ -94,7 +94,7 @@ public class Main {
         System.out.println("2 - Listar Quartos livres");
         System.out.println("3 - Listar Quartos ocupados");
         System.out.println("4 - Listar Reservas de Quarto");
-        System.out.println("0 - Sair");
+        System.out.println("0 - Voltar");
         System.out.print("\nEscolha uma opcao: ");
     }
     //Desenhar o Menu de Hospedes
@@ -104,7 +104,7 @@ public class Main {
         System.out.println("2 - Listar Hospedes");
         System.out.println("3 - Procurar Hospede por documento");
         System.out.println("4 - Editar Hospede");
-        System.out.println("0 - Sair");
+        System.out.println("0 - Voltar");
         System.out.print("\nEscolha uma opcao: ");
     }
     //Desenhar o Menu de Reservas
@@ -116,7 +116,7 @@ public class Main {
         System.out.println("4 - Listar Reservas por Hospede"); //presentes ou futuras
         System.out.println("5 - Editar Reserva"); //numero de hospede ou datas e revalidar capacidade e conflitos
         System.out.println("6 - Cancelar Reserva");
-        System.out.println("0 - Sair");
+        System.out.println("0 - Voltar");
         System.out.print("\nEscolha uma opcao: ");
     }
     //Funções de QUARTOS
@@ -219,6 +219,7 @@ public class Main {
         Scanner teclado = new Scanner(System.in);
         System.out.println("HOSPEDES -> Editar Hospede\n"); //Cabeçalho
         System.out.print("Insira o número do documento (CC) do Hospede: ");  //Pede o CC do hospede
+        numDocumentoHospede = teclado.nextLine();
         for (Hospede h : hospedes) {
             if (h != null) {
                 currentDocument = h.getDocumento();
@@ -228,13 +229,21 @@ public class Main {
                     System.out.println("ID: " + h.getId());
                     System.out.println("Nome: " + h.getNome());
                     System.out.println("Documento: " + h.getDocumento());
+                    System.out.println("Por favor, insira os novos dados. Caso não queira alterar, presione apenas ENTER\n");
+                    System.out.print("Insira novo Nome do Hospede: ");
+                    novoNomeHospede = teclado.nextLine();
+                    if (novoNomeHospede != "") {
+                        h.setNome(novoNomeHospede);
+                    }
+                    System.out.print("Insira novo Número de Cartão de Cidadão: ");
+                    novoNumeroCC = teclado.nextLine(); //Recebe o numero de CC
+                    if (novoNumeroCC != "") {
+                        h.setDocumento(novoNumeroCC);
+                    }
+                    break;
                 }
             }
         }
-        System.out.print("Insira novo Nome do Hospede: ");
-        novoNomeHospede = teclado.nextLine();
-        System.out.print("Insira novo Número de Cartão de Cidadão: ");
-        novoNumeroCC = teclado.nextLine(); //Recebe o numero de CC
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
     //Funções de RESERVAS
