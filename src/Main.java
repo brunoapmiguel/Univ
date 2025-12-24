@@ -63,13 +63,13 @@ public class Main {
                             break;
                         case 2: listarTodasAsReservas(); //Chama a função que vai listar todas as reservas
                             break;
-                        case 3: listarReservaPorQuarto();
+                        case 3: listarReservaPorQuarto(); //Listar reservas por quarto
                             break;
-                        case 4: listarReservaPorHospede();
+                        case 4: listarReservaPorHospede(); //Listar reservas por hospede
                             break;
                         case 5: editarReserva(); //Chama a função que vai permitir editar a reserva
                             break;
-                        case 6: cancelarReserva();
+                        case 6: cancelarReserva(); //Cancelar reserva
                             break;
                     }
                     break;
@@ -332,10 +332,35 @@ public class Main {
     }
     private static void cancelarReserva(){
         int numReserva;
+        char opt;
         Scanner teclado = new Scanner(System.in);
         System.out.println("RESERVAS -> Cancelar Reserva\n");
         System.out.print("Insira o ID da Reserva: ");
         numReserva = teclado.nextInt();
+        for (Reserva r : reservas) {
+            if (r != null) {
+                if (numReserva == r.getId()) {
+                    System.out.println("ID: " + r.getId());
+                    System.out.println("Data Inicio: " + r.getDataInicio());
+                    System.out.println("Data Fim: " + r.getDataFim());
+                    System.out.println("Reserva Ativa? " + r.getEstaAtiva());
+                    if (r.getEstaAtiva()) {
+                        System.out.print("\nDeseja cancelar (S/N)? ");
+                        opt = teclado.next().charAt(0);
+                        if (opt == 'S') {
+                            r.setEstaAtiva(false);
+                            System.out.println("\nReserva cancelada!");
+                            pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
+                        } else {
+                            break;
+                        }
+                    } else if (!r.getEstaAtiva()) {
+                        System.out.println("\nA reserva já se encontrava inativa!");
+                        pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
+                    }
+                }
+            }
+        }
     }
     //Funções de acesso a ficheiros
     private static void loadAllData() {
