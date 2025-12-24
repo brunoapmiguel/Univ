@@ -119,6 +119,7 @@ public class Main {
         System.out.println("0 - Voltar");
         System.out.print("\nEscolha uma opcao: ");
     }
+
     //Funções de QUARTOS
     private static void listarTodosOsQuartos(){  //VALIDADO
         System.out.println("RESERVAS -> Listar todos os Quartos\n"); //Cabeçalho
