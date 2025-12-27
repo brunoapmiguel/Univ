@@ -21,7 +21,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         //Declaração de variaveis
-
         int opcMenu, opcSubMenu; //variaveis de menu
         Scanner teclado = new Scanner(System.in); //Definição de "teclado" como input
         loadAllData(); //Carregar todos os dados dos ficheiros .csv
@@ -501,10 +500,8 @@ public class Main {
     }
     private static void listarReservaPorHospede(){
         String numDocumentoHospede, currentDocumentoHospede;
-
         int hospedeId = -1;
         int currentHospedeId;
-
         Scanner teclado = new Scanner(System.in);
         System.out.println("RESERVAS -> Listar Reserva por Hospede\n"); //Cabeçalho
         System.out.print("Insira o número do documento (CC) do Hospede: "); //Pedir o numero de CC do hospede
@@ -789,13 +786,9 @@ public class Main {
     private static void pressEnterToContinue()
     {
         System.out.println("\nPress ENTER key to continue..."); //Mostrar a mensagem a pedir que o utilizador pressione a tecla ENTER
-        try
-        {
+        try {
             System.in.read();
         }
-        catch(Exception e)
-        {}
+        catch(Exception e) {}
     }
 }
-
-
