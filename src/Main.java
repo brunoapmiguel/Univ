@@ -35,7 +35,7 @@ public class Main {
                 case 0:
                     saveAllData();
                     break;
-                case 1: //QUARTOS
+                case 1: //MENU QUARTOS
                     showMenuQuartos(); //Chama a função que desenha o menu dos quartos
                     opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
                     switch (opcSubMenu) {
@@ -49,7 +49,7 @@ public class Main {
                             break;
                     }
                     break;
-                case 2: //HOSPEDES
+                case 2: //MENU HOSPEDES
                     showMenuHospedes(); //Chama a fução que desenha o menu de hospedes
                     opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
                     switch (opcSubMenu) {
@@ -63,7 +63,7 @@ public class Main {
                             break;
                     }
                     break;
-                case 3: //RESERVAS
+                case 3: //MENU RESERVAS
                     showMenuReservas(); //Chama a função que desenha o menu de reservas
                     opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
                     switch (opcSubMenu) {
