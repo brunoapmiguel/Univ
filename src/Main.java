@@ -335,7 +335,8 @@ public class Main {
     private static void criarReserva(){
         int numPessoas = 0, hospedeId, quartoId; //variavel para receber o numero pessoas
         char opt;
-        LocalDate dataInicio, dataFim;
+        boolean dataInicioValida = false, dataFimValida = false, datasOK = false;
+        LocalDate dataInicio = LocalDate.parse("1970-01-02"), dataFim = LocalDate.parse("1970-01-01");
         String dataI = "0", dataF = "0", nxline;
         String numDocumentoHospede;
         Scanner teclado = new Scanner(System.in);
@@ -348,16 +349,35 @@ public class Main {
             System.out.print("Insira o Número total de pessoas: ");
             numPessoas = teclado.nextInt();
             nxline = teclado.nextLine(); //Ler nextline para o nextint acima
-            while (!dataValida(dataI)) {
-                System.out.print("Insira a Data de Inicio (AAAA-MM-DD): ");
-                dataI =  teclado.nextLine(); //Recebe a data de inicio
+            while (!datasOK) {
+                while (!dataInicioValida) {
+                    System.out.print("Insira a Data de Inicio (AAAA-MM-DD): ");
+                    dataI = teclado.nextLine(); //Recebe a data de inicio
+                    dataInicioValida = dataValida(dataI);
+                }
+                dataInicio = LocalDate.parse(dataI);
+                while (!dataFimValida) {
+                    System.out.print("Insira a Data de Fim (AAAA-MM-DD): ");
+                    dataF = teclado.nextLine(); //Recebe a data de fim
+                    dataFimValida = dataValida(dataF);
+                }
+                dataFim = LocalDate.parse(dataF);
+                if (dataInicio.isAfter(dataFim)) {
+                    System.out.println("\nA data de Inicio não pode ser posterior á data de Fim\n");
+                    dataInicioValida = false;
+                    dataFimValida = false;
+                    datasOK = false;
+                }
+                if (dataInicio.isEqual(dataFim)) {
+                    System.out.println("\nA data de Inicio não pode ser igual á data de Fim\n");
+                    dataInicioValida = false;
+                    dataFimValida = false;
+                    datasOK = false;
+                }
+                if (!dataInicio.isAfter(dataFim) && !dataInicio.isEqual(dataFim)) {
+                    datasOK = true;
+                }
             }
-            dataInicio =  LocalDate.parse(dataI);
-            while (!dataValida(dataF)) {
-                System.out.print("Insira a Data de Fim (AAAA-MM-DD): ");
-                dataF =  teclado.nextLine(); //Recebe a data de fim
-            }
-            dataFim =  LocalDate.parse(dataF);
             quartoId = procurarQuartoId(numPessoas, dataInicio, dataFim);
             System.out.println("Quarto sugerido: " + obterNumerodeQuartoPeloId(quartoId));
             //necessária função para receber o numero de quarto, e datas para validar se o quarto esta livre
@@ -839,7 +859,6 @@ public class Main {
             } else if (!Year.isLeap(ano) && dia < 1  || dia > 28) {
                 dataEstaValida = false;
             }
-
         }
         //System.out.println("Data: " + ano + "-" + mes + "-" + dia);
         return dataEstaValida;
