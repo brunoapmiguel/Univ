@@ -824,7 +824,7 @@ public class Main {
     private static boolean dataValida(String data) {
         int ano = 0, mes = 0, dia = 0;
         boolean dataEstaValida = false;
-        try {
+        try { //Split dos dados inseridos e erros handling
             String[] quartosLine = data.split("-");
             ano = Integer.parseInt(quartosLine[0]);
             mes = Integer.parseInt(quartosLine[1]);
@@ -837,23 +837,23 @@ public class Main {
         int anoAtual, anosFuturos;
         anoAtual = Year.now().getValue();
         anosFuturos = anoAtual + 2;
-        if (ano < anoAtual || ano > anosFuturos) {
+        if (ano < anoAtual || ano > anosFuturos) { //Verificar se o ano se encontra entre o ano atual e inferior aos proximos dois anos
             dataEstaValida = false;
         }
-        if (mes < 1 || mes > 12) {
+        if (mes < 1 || mes > 12) { //Validar se o mês se encontra entre 1 e 12
             dataEstaValida = false;
         }
-        if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+        if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) { //Verificar os dias do mes
             if (dia <1 || dia > 31) {
                 dataEstaValida = false;
             }
         }
-        if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+        if (mes == 4 || mes == 6 || mes == 9 || mes == 11) { //Verificar os dias do mes
             if (dia <1 || dia > 30) {
                 dataEstaValida = false;
             }
         }
-        if (mes == 2) {
+        if (mes == 2) { //Verificar os dias no mes de fevereiro
             if (Year.isLeap(ano) && dia < 1  || dia > 29) {
                 dataEstaValida = false;
             } else if (!Year.isLeap(ano) && dia < 1  || dia > 28) {
