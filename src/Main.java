@@ -1,5 +1,6 @@
 import java.io.*;
 import java.time.LocalDate; //necessario para as datas
+import java.time.Year;
 import java.util.*;
 
 public class Main {
@@ -26,6 +27,7 @@ public class Main {
         loadAllData(); //Carregar todos os dados dos ficheiros .csv
         atualizarTodasAsReservas();
         atualizarQuartosOcupados();
+        String dataToCheck = "0";
         do { //Esta função de DO, tem como objectivo repetir o menu enquanto o utilizador não escolher a opção 0 para sair
             showMainMenu(); //Chama a função que desenha o Menu Principal
             //System.out.println(LocalDate.now());
@@ -334,7 +336,7 @@ public class Main {
         int numPessoas = 0, hospedeId, quartoId; //variavel para receber o numero pessoas
         char opt;
         LocalDate dataInicio, dataFim;
-        String dataI, dataF, nxline;
+        String dataI = "0", dataF = "0", nxline;
         String numDocumentoHospede;
         Scanner teclado = new Scanner(System.in);
         System.out.println("RESERVAS -> Criar Reserva\n"); //Cabeçalho
@@ -346,8 +348,10 @@ public class Main {
             System.out.print("Insira o Número total de pessoas: ");
             numPessoas = teclado.nextInt();
             nxline = teclado.nextLine(); //Ler nextline para o nextint acima
-            System.out.print("Insira a Data de Inicio (AAAA-MM-DD): ");
-            dataI =  teclado.nextLine(); //Recebe a data de inicio
+            while (!dataValida(dataI)) {
+                System.out.print("Insira a Data de Inicio (AAAA-MM-DD): ");
+                dataI =  teclado.nextLine(); //Recebe a data de inicio
+            }
             dataInicio =  LocalDate.parse(dataI);
             System.out.print("Insira a Data de Fim (AAAA-MM-DD): ");
             dataF =  teclado.nextLine(); //Recebe a data de fim
@@ -790,5 +794,48 @@ public class Main {
             System.in.read();
         }
         catch(Exception e) {}
+    }
+    private static boolean dataValida(String data) {
+        int ano = 0, mes = 0, dia = 0;
+        boolean dataEstaValida = false;
+        try {
+            String[] quartosLine = data.split("-");
+            ano = Integer.parseInt(quartosLine[0]);
+            mes = Integer.parseInt(quartosLine[1]);
+            dia = Integer.parseInt(quartosLine[2]);
+            dataEstaValida = true;
+        }
+        catch(Exception e) {
+            dataEstaValida = false;
+        }
+        int anoAtual, anosFuturos;
+        anoAtual = Year.now().getValue();
+        anosFuturos = anoAtual + 2;
+        if (ano < anoAtual || ano > anosFuturos) {
+            dataEstaValida = false;
+        }
+        if (mes < 1 || mes > 12) {
+            dataEstaValida = false;
+        }
+        if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+            if (dia <1 || dia > 31) {
+                dataEstaValida = false;
+            }
+        }
+        if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+            if (dia <1 || dia > 30) {
+                dataEstaValida = false;
+            }
+        }
+        if (mes == 2) {
+            if (Year.isLeap(ano) && dia < 1  || dia > 29) {
+                dataEstaValida = false;
+            } else if (!Year.isLeap(ano) && dia < 1  || dia > 28) {
+                dataEstaValida = false;
+            }
+
+        }
+        //System.out.println("Data: " + ano + "-" + mes + "-" + dia);
+        return dataEstaValida;
     }
 }
