@@ -562,9 +562,10 @@ public class Main {
         int numReserva;
         String novaDataI = "0", novaDataF = "0";
         int novoNumeroHospedes;
+        boolean dataInicioValida = false, dataFimValida = false, datasOK = false;
         char opt = 'z';
         String nxtint;
-        LocalDate novaDataInicio, novaDataFim;
+        LocalDate novaDataInicio = LocalDate.parse("1970-01-02"), novaDataFim = LocalDate.parse("1970-01-01");
         Scanner teclado = new Scanner(System.in);
         System.out.println("RESERVAS -> Editar Reserva\n"); //Cabeçalho
         System.out.print("Insira o ID da Reserva: "); //Pedir o ID da reserva
@@ -588,16 +589,35 @@ public class Main {
                         System.out.print("Número de Hospedes: ");
                         novoNumeroHospedes = teclado.nextInt();
                         nxtint = teclado.nextLine();
-                        while (!dataValida(novaDataI)) {
-                            System.out.print("Data de Inicio (AAAA-MM-DD): ");
-                            novaDataI = teclado.nextLine(); //Recebe a data de inicio
+                        while (!datasOK) {
+                            while (!dataInicioValida) {
+                                System.out.print("Insira a Data de Inicio (AAAA-MM-DD): ");
+                                novaDataI = teclado.nextLine(); //Recebe a data de inicio
+                                dataInicioValida = dataValida(novaDataI);
+                            }
+                            novaDataInicio = LocalDate.parse(novaDataI);
+                            while (!dataFimValida) {
+                                System.out.print("Insira a Data de Fim (AAAA-MM-DD): ");
+                                novaDataF = teclado.nextLine(); //Recebe a data de fim
+                                dataFimValida = dataValida(novaDataF);
+                            }
+                            novaDataFim = LocalDate.parse(novaDataF);
+                            if (novaDataInicio.isAfter(novaDataFim)) {
+                                System.out.println("\nA data de Inicio não pode ser posterior á data de Fim\n");
+                                dataInicioValida = false;
+                                dataFimValida = false;
+                                datasOK = false;
+                            }
+                            if (novaDataInicio.isEqual(novaDataFim)) {
+                                System.out.println("\nA data de Inicio não pode ser igual á data de Fim\n");
+                                dataInicioValida = false;
+                                dataFimValida = false;
+                                datasOK = false;
+                            }
+                            if (!novaDataInicio.isAfter(novaDataFim) && !novaDataInicio.isEqual(novaDataFim)) {
+                                datasOK = true;
+                            }
                         }
-                        novaDataInicio = LocalDate.parse(novaDataI);
-                        while (!dataValida(novaDataF)) {
-                            System.out.print("Data de Fim (AAAA-MM-DD): ");
-                            novaDataF = teclado.nextLine(); //Recebe a data de fim
-                        }
-                        novaDataFim = LocalDate.parse(novaDataF);
                         r.setNumeroHospedes(novoNumeroHospedes);
                         r.setDataInicio(novaDataInicio);
                         r.setDataFim(novaDataFim);
@@ -607,6 +627,7 @@ public class Main {
                 }
             }
         }
+        atualizarTodasAsReservas();
         saveReservasData();
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
