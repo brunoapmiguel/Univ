@@ -353,8 +353,10 @@ public class Main {
                 dataI =  teclado.nextLine(); //Recebe a data de inicio
             }
             dataInicio =  LocalDate.parse(dataI);
-            System.out.print("Insira a Data de Fim (AAAA-MM-DD): ");
-            dataF =  teclado.nextLine(); //Recebe a data de fim
+            while (!dataValida(dataF)) {
+                System.out.print("Insira a Data de Fim (AAAA-MM-DD): ");
+                dataF =  teclado.nextLine(); //Recebe a data de fim
+            }
             dataFim =  LocalDate.parse(dataF);
             quartoId = procurarQuartoId(numPessoas, dataInicio, dataFim);
             System.out.println("Quarto sugerido: " + obterNumerodeQuartoPeloId(quartoId));
@@ -538,7 +540,7 @@ public class Main {
     }
     private static void editarReserva(){
         int numReserva;
-        String novaDataI, novaDataF;
+        String novaDataI = "0", novaDataF = "0";
         int novoNumeroHospedes;
         char opt = 'z';
         String nxtint;
@@ -566,11 +568,15 @@ public class Main {
                         System.out.print("Número de Hospedes: ");
                         novoNumeroHospedes = teclado.nextInt();
                         nxtint = teclado.nextLine();
-                        System.out.print("Data de Inicio: ");
-                        novaDataI = teclado.nextLine(); //Recebe a data de inicio
+                        while (!dataValida(novaDataI)) {
+                            System.out.print("Data de Inicio (AAAA-MM-DD): ");
+                            novaDataI = teclado.nextLine(); //Recebe a data de inicio
+                        }
                         novaDataInicio = LocalDate.parse(novaDataI);
-                        System.out.print("Data de Fim: ");
-                        novaDataF = teclado.nextLine(); //Recebe a data de fim
+                        while (!dataValida(novaDataF)) {
+                            System.out.print("Data de Fim (AAAA-MM-DD): ");
+                            novaDataF = teclado.nextLine(); //Recebe a data de fim
+                        }
                         novaDataFim = LocalDate.parse(novaDataF);
                         r.setNumeroHospedes(novoNumeroHospedes);
                         r.setDataInicio(novaDataInicio);
