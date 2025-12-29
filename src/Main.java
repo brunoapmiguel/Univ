@@ -227,7 +227,6 @@ public class Main {
                 break;
             }
         }
-
         System.out.println("ID,ID Quarto,ID Hospede,Numero Hospedes, Data Inicio, Data Fim, Está Ativa"); //Cabeçalho
         for (Reserva r : reservas) {
             if (r != null) {
@@ -242,7 +241,6 @@ public class Main {
         }
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
-
     //Funções de HOSPEDES
     //Adicionar Hospedes
     private static void adicionarHospede(String doc) {
@@ -485,7 +483,6 @@ public class Main {
             if (q != null && !q.getEstaOcupado()) {
                 //System.out.println(q.getCapacidade());
                 if (q.getCapacidade() == numPessoas) {
-
                     //System.out.print(q.getIdQuarto());
                     if (!quartoReservadoNesteIntervalo(q.getIdQuarto(), dataI, dataF)) {
                         quartoIdDisponivel = q.getIdQuarto();
@@ -610,7 +607,6 @@ public class Main {
         String numQuartoString = "";
         boolean opcValida = false;
         //numQuarto = teclado.nextInt(); //Receber o numero de quarto
-
         do {
             try {
                 System.out.print("Insira o número do Quarto: "); //Pede o número do quarto
@@ -634,7 +630,6 @@ public class Main {
                 break;
             }
         }
-
         System.out.println("ID,ID Quarto,ID Hospede,Numero Hospedes, Data Inicio, Data Fim, Está Ativa"); //Cabeçalho
         for (Reserva r : reservas) {
             if (r != null) {
@@ -718,7 +713,6 @@ public class Main {
         //numReserva = teclado.nextInt(); //Recebe o numero da reserva (INTEGER)
         //nxtint = teclado.nextLine();
 
-
         for (Reserva r : reservas) {
             if (r != null) {
                 if (Objects.equals(numReserva, r.getId())) {
@@ -793,10 +787,6 @@ public class Main {
                                 opcValida = false;
                             }
                         } while (novoNumPessoas < 1 || novoNumPessoas > 6 || !opcValida);
-
-                        //System.out.print("Número de Hospedes: ");
-                        //novoNumeroHospedes = teclado.nextInt();
-                        //nxtint = teclado.nextLine();
                         novoNumeroHospedes = novoNumPessoas;
                         if (novoNumeroHospedes != r.getNumeroHospedes()) {
                             if (novoNumeroHospedes != obterNumeroDeHospedes(r.getIdQuarto())) {
@@ -867,11 +857,6 @@ public class Main {
                 opcValida = false;
             }
         } while (numReserva < 0 || numReserva > 999 || !opcValida);
-
-
-        //numReserva = teclado.nextInt();
-        //nxtint = teclado.nextLine();
-
 
         boolean reservaEncontrada = false;
         for (Reserva r : reservas) {
@@ -963,7 +948,6 @@ public class Main {
                 numHospedes = cnt;
                 cnt++;
             }
-            //System.out.println(numHospedes);
         }
         catch(FileNotFoundException e){ //Ficheiro não encontrado
             System.out.println("ERRO: Ficheiro '" + fileHospedes + "' não encontrado");
@@ -1001,7 +985,6 @@ public class Main {
                 numReservas = cnt;
                 cnt++;
             }
-            //System.out.println(numReservas);
         }
         catch(FileNotFoundException e){ //Ficheiro não encontrado
             System.out.println("ERRO: Ficheiro '" + fileReservas + "' não encontrado");
