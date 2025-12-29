@@ -22,70 +22,90 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         //Declaração de variaveis
-        int opcMenu, opcSubMenu; //variaveis de menu
+        String opcMenu, opcSubMenu; //variaveis de menu
         Scanner teclado = new Scanner(System.in); //Definição de "teclado" como input
         loadAllData(); //Carregar todos os dados dos ficheiros .csv
         atualizarTodasAsReservas();
         atualizarQuartosOcupados();
-        //String dataToCheck = "0";
         do { //Esta função de DO, tem como objectivo repetir o menu enquanto o utilizador não escolher a opção 0 para sair
-            showMainMenu(); //Chama a função que desenha o Menu Principal
-            //System.out.println(LocalDate.now());
-            //System.out.println(verificarSeHospedeExiste("22222222"));
-            opcMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
+            do {
+                showMainMenu(); //Chama a função que desenha o Menu Principal
+                opcMenu = teclado.nextLine();
+                if (!opcMenu.equals("1") &&  !opcMenu.equals("2") && !opcMenu.equals("3") &&  !opcMenu.equals("0")) {
+                    System.out.println("Opção selecionada é inválida!");
+                }
+            } while (!opcMenu.equals("1") &&  !opcMenu.equals("2") && !opcMenu.equals("3") &&  !opcMenu.equals("0"));
             switch (opcMenu) { //Switch Case para as diferentes opções
-                case 0:
+                case "0":
                     saveAllData();
                     break;
-                case 1: //MENU QUARTOS
-                    showMenuQuartos(); //Chama a função que desenha o menu dos quartos
-                    opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
+                case "1": //MENU QUARTOS
+                    do {
+                        showMenuQuartos(); //Chama a função que desenha o menu dos quartos
+                        opcSubMenu = teclado.nextLine();
+                        if (!opcSubMenu.equals("1") &&  !opcSubMenu.equals("2") && !opcSubMenu.equals("3") &&  !opcSubMenu.equals("4") &&  !opcSubMenu.equals("0")) {
+                            System.out.println("Opção selecionada é inválida!");
+                        }
+                    } while (!opcSubMenu.equals("1") &&  !opcSubMenu.equals("2") && !opcSubMenu.equals("3") &&  !opcSubMenu.equals("4") &&  !opcSubMenu.equals("0"));
+                    //opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
                     switch (opcSubMenu) {
-                        case 1: listarTodosOsQuartos(); //Chama a função que vai listar todos os quartos
+                        case "1": listarTodosOsQuartos(); //Chama a função que vai listar todos os quartos
                             break;
-                        case 2: listarQuartosLivres(); //Chama a função que vai listar os quartos livres
+                        case "2": listarQuartosLivres(); //Chama a função que vai listar os quartos livres
                             break;
-                        case 3: listarQuartosOcupados(); //Chama a função que vai listar os quartos ocupados
+                        case "3": listarQuartosOcupados(); //Chama a função que vai listar os quartos ocupados
                             break;
-                        case 4: listarReservasDeQuarto(); //Chama a função que vai listar todas as reservas de um quarto
+                        case "4": listarReservasDeQuarto(); //Chama a função que vai listar todas as reservas de um quarto
                             break;
                     }
                     break;
-                case 2: //MENU HOSPEDES
-                    showMenuHospedes(); //Chama a fução que desenha o menu de hospedes
-                    opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
+                case "2": //MENU HOSPEDES
+                    do {
+                        showMenuHospedes(); //Chama a fução que desenha o menu de hospedes
+                        opcSubMenu = teclado.nextLine();
+                        if (!opcSubMenu.equals("1") &&  !opcSubMenu.equals("2") && !opcSubMenu.equals("3") &&  !opcSubMenu.equals("4") &&  !opcSubMenu.equals("0")) {
+                            System.out.println("Opção selecionada é inválida!");
+                        }
+                    } while (!opcSubMenu.equals("1") &&  !opcSubMenu.equals("2") && !opcSubMenu.equals("3") &&  !opcSubMenu.equals("4") &&  !opcSubMenu.equals("0"));
+                    //opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
                     switch (opcSubMenu) {
-                        case 1: adicionarHospede(""); //Chama a função que vai adicionar hospedes
+                        case "1": adicionarHospede(""); //Chama a função que vai adicionar hospedes
                             break;
-                        case 2: listarHospedes(); //Chama a função que vai listar os hospedes
+                        case "2": listarHospedes(); //Chama a função que vai listar os hospedes
                             break;
-                        case 3: procurarHospedePorDocumento();  //Chama a função que mostrar o hospede correspondente
+                        case "3": procurarHospedePorDocumento();  //Chama a função que mostrar o hospede correspondente
                             break;
-                        case 4: editarHospede(); //Chama a função que vai permitir editar os dados do hospede
+                        case "4": editarHospede(); //Chama a função que vai permitir editar os dados do hospede
                             break;
                     }
                     break;
-                case 3: //MENU RESERVAS
-                    showMenuReservas(); //Chama a função que desenha o menu de reservas
-                    opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
+                case "3": //MENU RESERVAS
+                    do {
+                        showMenuReservas(); //Chama a função que desenha o menu de reservas
+                        opcSubMenu = teclado.nextLine();
+                        if (!opcSubMenu.equals("1") &&  !opcSubMenu.equals("2") && !opcSubMenu.equals("3") &&  !opcSubMenu.equals("4") &&  !opcSubMenu.equals("5") &&  !opcSubMenu.equals("6") &&  !opcSubMenu.equals("0")) {
+                            System.out.println("Opção selecionada é inválida!");
+                        }
+                    } while (!opcSubMenu.equals("1") &&  !opcSubMenu.equals("2") && !opcSubMenu.equals("3") &&  !opcSubMenu.equals("4") &&  !opcSubMenu.equals("5") &&  !opcSubMenu.equals("6") &&  !opcSubMenu.equals("0"));
+                    //opcSubMenu = teclado.nextInt(); //Espera pela opção escolhida pelo utilizador
                     switch (opcSubMenu) {
-                        case 1: criarReserva(); //Chamar a função que vai encontrar os quartos livres para a capacidade desejada
+                        case "1": criarReserva(); //Chamar a função que vai encontrar os quartos livres para a capacidade desejada
                             break;
-                        case 2: listarTodasAsReservas(); //Chama a função que vai listar todas as reservas
+                        case "2": listarTodasAsReservas(); //Chama a função que vai listar todas as reservas
                             break;
-                        case 3: listarReservaPorQuarto(); //Listar reservas por quarto
+                        case "3": listarReservaPorQuarto(); //Listar reservas por quarto
                             break;
-                        case 4: listarReservaPorHospede(); //Listar reservas por hospede
+                        case "4": listarReservaPorHospede(); //Listar reservas por hospede
                             break;
-                        case 5: editarReserva(); //Chama a função que vai permitir editar a reserva
+                        case "5": editarReserva(); //Chama a função que vai permitir editar a reserva
                             break;
-                        case 6: cancelarReserva(); //Cancelar reserva
+                        case "6": cancelarReserva(); //Cancelar reserva
                             break;
                     }
                     break;
             }
             //saveAllData(); //Guardar os dados nos ficheiros .csv
-        } while (opcMenu != 0); //Repetir equanto a opção escolhida não for 0. Se for 0, sai
+        } while (!opcMenu.equals("0")); //Repetir equanto a opção escolhida não for 0. Se for 0, sai
         //saveAllData(); //Guarda toda a informação
     }
     //Desenhar o MENU PRINCIPAL
@@ -122,8 +142,8 @@ public class Main {
         System.out.println("== RESERVAS ==");
         System.out.println("1 - Criar Reserva");
         System.out.println("2 - Listar todas as Reservas");
-        System.out.println("3 - Listar Reservas por Quarto"); //presentes ou futuras
-        System.out.println("4 - Listar Reservas por Hospede"); //presentes ou futuras
+        System.out.println("3 - Listar Reservas por Quarto (presentes ou futuras)"); //presentes ou futuras
+        System.out.println("4 - Listar Reservas por Hospede (presentes ou futuras)"); //presentes ou futuras
         System.out.println("5 - Editar Reserva"); //numero de hospede ou datas e revalidar capacidade e conflitos
         System.out.println("6 - Cancelar Reserva");
         System.out.println("0 - Voltar");
@@ -159,7 +179,7 @@ public class Main {
             if (q != null && q.getEstaOcupado()) {
                 String linha = q.getIdQuarto() + "," + q.getNumero() + "," + q.getCapacidade() + "," + q.getEstaOcupado();
                 System.out.println(linha);
-                System.out.println("'- Ocupação atual: " + ocupacaoDoQuarto(q.getIdQuarto()));
+                System.out.println("'- Ocupação atual: " + ocupacaoDoQuarto(q.getIdQuarto()) + " hospede(s).");
             }
         }
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
@@ -179,19 +199,35 @@ public class Main {
         return ocupacaoAtual;
     }
     private static void listarReservasDeQuarto() {
-        int numQuarto, currentIdQuarto = -1;
-        String nxtint;
+        int numQuarto = 0, currentIdQuarto = -1;
+        boolean opcValida = false;
+        String numQuartoString;
+        //String nxtint;
         System.out.println("RESERVAS -> Listar Reservas de Quarto\n");
         Scanner teclado = new Scanner(System.in);
-        System.out.print("Insira o número do Quarto: ");  //Pede o numero do Quarto
-        numQuarto = teclado.nextInt();
-        nxtint = teclado.nextLine();
+        do {
+            try {
+                System.out.print("Insira o número do Quarto: ");  //Pede o numero do Quarto
+                numQuartoString = teclado.nextLine();
+                numQuarto =  Integer.parseInt(numQuartoString);
+                if (numQuarto < 101 || numQuarto > 450) {
+                    System.out.println("Por favor, insira um número de quarto válido (entre 101 e 450)");
+                    opcValida = false;
+                } else {
+                    opcValida = true;
+                }
+            } catch(Exception e) {
+                System.out.println("Por favor, insira um número de quarto válido (entre 101 e 450)");
+                opcValida = false;
+            }
+        } while (numQuarto < 101 || numQuarto > 450 || !opcValida);
         for (Quarto q : quartos) {
             if (q != null &&  q.getNumero() == numQuarto) {
                 currentIdQuarto = q.getIdQuarto();
                 break;
             }
         }
+
         System.out.println("ID,ID Quarto,ID Hospede,Numero Hospedes, Data Inicio, Data Fim, Está Ativa"); //Cabeçalho
         for (Reserva r : reservas) {
             if (r != null) {
@@ -213,24 +249,29 @@ public class Main {
         //VERIFICAR SE O NUMERO DE HOSPEDES JÁ ESTA NO MAXIMO
         String nome;
         String documento;
-        Scanner teclado = new Scanner(System.in);
-        System.out.println("HOSPEDES -> Adicionar Hospede\n"); //Cabeçalho
-        if (doc == "") {
-            System.out.print("Número do Cartão de Cidadão: ");
-            documento = teclado.nextLine();
+        //numHospedes = 1000;
+        if (numHospedes < 1000) {
+            Scanner teclado = new Scanner(System.in);
+            System.out.println("HOSPEDES -> Adicionar Hospede\n"); //Cabeçalho
+            if (doc == "") {
+                System.out.print("Número do Cartão de Cidadão: ");
+                documento = teclado.nextLine();
+            } else {
+                System.out.println("Número do Cartão de Cidadão: " + doc);
+                documento = doc;
+            }
+            if (!verificarSeHospedeExiste(documento)) {
+                numHospedes++;
+                System.out.print("Nome do Hóspede: ");
+                nome = teclado.nextLine();
+                hospedes[numHospedes] = new Hospede(numHospedes, nome, documento);
+                saveHospedesData();
+                System.out.println("\nHóspede adicionado!");
+            } else {
+                System.out.println("\nHóspede já existente!");
+            }
         } else {
-            System.out.println("Número do Cartão de Cidadão: " + doc);
-            documento = doc;
-        }
-        if (!verificarSeHospedeExiste(documento)) {
-            numHospedes++;
-            System.out.print("Nome do Hóspede: ");
-            nome = teclado.nextLine();
-            hospedes[numHospedes] = new Hospede(numHospedes, nome, documento);
-            saveHospedesData();
-            System.out.println("\nHóspede adicionado!");
-        } else {
-            System.out.println("\nHóspede já existente!");
+            System.out.println("ERRO: Já atingiu o número máximo de hospedes (1000)");
         }
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
@@ -251,7 +292,7 @@ public class Main {
         String numDocumentoHospede; //variavel para receber o numero de CC do hospede
         Scanner teclado = new Scanner(System.in);
         System.out.println("HOSPEDES -> Procurar Hospede por documento\n"); //Cabeçalho
-        System.out.print("Insira o número do documento (CC) do Hospede: ");  //Pede o CC do hospede
+        System.out.print("Insira o número do documento do Hospede: ");  //Pede o CC do hospede
         numDocumentoHospede = teclado.nextLine(); //Recebe o numero de CC. (AINDA FALTA VALIDAR O FORMATO)
         String currentDocument;
         boolean encontrado = false;
@@ -317,7 +358,7 @@ public class Main {
         String novoNumeroCC;
         Scanner teclado = new Scanner(System.in);
         System.out.println("HOSPEDES -> Editar Hospede\n"); //Cabeçalho
-        System.out.print("Insira o número do documento (CC) do Hospede: ");  //Pede o CC do hospede
+        System.out.print("Insira o número do documento do Hospede: ");  //Pede o CC do hospede
         numDocumentoHospede = teclado.nextLine();
         for (Hospede h : hospedes) {
             if (h != null) {
@@ -352,63 +393,89 @@ public class Main {
     private static void criarReserva(){
         int numPessoas = 0, hospedeId, quartoId; //variavel para receber o numero pessoas
         char opt;
-        boolean dataInicioValida = false, dataFimValida = false, datasOK = false;
+        boolean dataInicioValida = false, dataFimValida = false, datasOK = false, opcValida = false;
         LocalDate dataInicio = LocalDate.parse("1970-01-02"), dataFim = LocalDate.parse("1970-01-01");
         String dataI = "0", dataF = "0", nxline;
-        String numDocumentoHospede;
-        Scanner teclado = new Scanner(System.in);
-        System.out.println("RESERVAS -> Criar Reserva\n"); //Cabeçalho
-        System.out.print("Insira o número do documento (CC) do Hospede: ");  //Pede o CC do hospede
-        numDocumentoHospede = teclado.nextLine();
-        //VALIDAR SE O NUMERO DE RESERVAS ESTA NO MAXIMO
-        if (verificarSeHospedeExiste(numDocumentoHospede)) {
-            hospedeId = obterIdDeHospede(numDocumentoHospede);
-            System.out.print("Insira o Número total de hospedes: ");
-            numPessoas = teclado.nextInt();
-            nxline = teclado.nextLine(); //Ler nextline para o nextint acima
-            while (!datasOK) {
-                while (!dataInicioValida) {
-                    System.out.print("Insira a Data de Inicio (AAAA-MM-DD): ");
-                    dataI = teclado.nextLine(); //Recebe a data de inicio
-                    dataInicioValida = dataValida(dataI);
+        String numDocumentoHospede, numPessoasString;
+        //numReservas = 1000;
+        if (numReservas < 1000) {
+            Scanner teclado = new Scanner(System.in);
+            System.out.println("RESERVAS -> Criar Reserva\n"); //Cabeçalho
+            System.out.print("Insira o número do documento do Hospede: ");  //Pede o CC do hospede
+            numDocumentoHospede = teclado.nextLine();
+            //VALIDAR SE O NUMERO DE RESERVAS ESTA NO MAXIMO
+            if (verificarSeHospedeExiste(numDocumentoHospede)) {
+                hospedeId = obterIdDeHospede(numDocumentoHospede);
+                do {
+                    try {
+                        System.out.print("Insira o Número total de hospedes: ");
+                        numPessoasString = teclado.nextLine();
+                        numPessoas =  Integer.parseInt(numPessoasString);
+                        if (numPessoas < 1 || numPessoas > 6) {
+                            System.out.println("Por favor, insira um número de hospedes válido (entre 1 e 6)");
+                            opcValida = false;
+                        } else {
+                            opcValida = true;
+                        }
+                    } catch(Exception e) {
+                        System.out.println("Por favor, insira um número de hospedes válido (entre 1 e 6)");
+                        opcValida = false;
+                    }
+                } while (numPessoas < 1 || numPessoas > 6 || !opcValida);
+
+                //System.out.print("Insira o Número total de hospedes: ");
+                //numPessoas = teclado.nextInt();
+                //nxline = teclado.nextLine(); //Ler nextline para o nextint acima
+
+
+                while (!datasOK) {
+                    while (!dataInicioValida) {
+                        System.out.print("Insira a Data de Inicio (AAAA-MM-DD): ");
+                        dataI = teclado.nextLine(); //Recebe a data de inicio
+                        dataInicioValida = dataValida(dataI);
+                    }
+                    dataInicio = LocalDate.parse(dataI);
+                    while (!dataFimValida) {
+                        System.out.print("Insira a Data de Fim (AAAA-MM-DD): ");
+                        dataF = teclado.nextLine(); //Recebe a data de fim
+                        dataFimValida = dataValida(dataF);
+                    }
+                    dataFim = LocalDate.parse(dataF);
+                    if (dataInicio.isAfter(dataFim)) {
+                        System.out.println("\nA data de Inicio não pode ser posterior á data de Fim\n");
+                        dataInicioValida = false;
+                        dataFimValida = false;
+                        datasOK = false;
+                    }
+                    if (dataInicio.isEqual(dataFim)) {
+                        System.out.println("\nA data de Inicio não pode ser igual á data de Fim\n");
+                        dataInicioValida = false;
+                        dataFimValida = false;
+                        datasOK = false;
+                    }
+                    if (!dataInicio.isAfter(dataFim) && !dataInicio.isEqual(dataFim)) {
+                        datasOK = true;
+                    }
                 }
-                dataInicio = LocalDate.parse(dataI);
-                while (!dataFimValida) {
-                    System.out.print("Insira a Data de Fim (AAAA-MM-DD): ");
-                    dataF = teclado.nextLine(); //Recebe a data de fim
-                    dataFimValida = dataValida(dataF);
-                }
-                dataFim = LocalDate.parse(dataF);
-                if (dataInicio.isAfter(dataFim)) {
-                    System.out.println("\nA data de Inicio não pode ser posterior á data de Fim\n");
-                    dataInicioValida = false;
-                    dataFimValida = false;
-                    datasOK = false;
-                }
-                if (dataInicio.isEqual(dataFim)) {
-                    System.out.println("\nA data de Inicio não pode ser igual á data de Fim\n");
-                    dataInicioValida = false;
-                    dataFimValida = false;
-                    datasOK = false;
-                }
-                if (!dataInicio.isAfter(dataFim) && !dataInicio.isEqual(dataFim)) {
-                    datasOK = true;
+                quartoId = procurarQuartoId(numPessoas, dataInicio, dataFim);
+                System.out.println("Quarto sugerido: " + obterNumerodeQuartoPeloId(quartoId));
+                //necessária função para receber o numero de quarto, e datas para validar se o quarto esta livre
+                numReservas++;
+                reservas[numReservas] = new Reserva(numReservas, quartoId, hospedeId, numPessoas, dataInicio, dataFim, true);
+                atualizarQuartosOcupados();
+                saveReservasData();
+                pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
+            } else {
+                System.out.println("Hóspede não encontrado!");
+                System.out.print("\nDeseja adicionar (S/N)? ");
+                opt = teclado.next().charAt(0);
+                if (opt == 'S' || opt == 's') {
+                    adicionarHospede(numDocumentoHospede);
                 }
             }
-            quartoId = procurarQuartoId(numPessoas, dataInicio, dataFim);
-            System.out.println("Quarto sugerido: " + obterNumerodeQuartoPeloId(quartoId));
-            //necessária função para receber o numero de quarto, e datas para validar se o quarto esta livre
-            numReservas++;
-            reservas[numReservas] = new Reserva(numReservas, quartoId, hospedeId, numPessoas, dataInicio, dataFim, true);
-            saveReservasData();
-            pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
         } else {
-            System.out.println("Hóspede não encontrado!");
-            System.out.print("\nDeseja adicionar (S/N)? ");
-            opt = teclado.next().charAt(0);
-            if (opt == 'S' || opt == 's') {
-                adicionarHospede(numDocumentoHospede);
-            }
+            System.out.println("ERRO: Já atingiu o máximo número de reservas (1000)");
+            pressEnterToContinue();
         }
     }
     //Função auxiliar para procurar quartos para um determinado numero de hospedes
@@ -537,20 +604,46 @@ public class Main {
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
     private static void listarReservaPorQuarto(){
-        int numQuarto, currentRoom;
+        int numQuarto = 0, currentIdQuarto = 0;
         Scanner teclado = new Scanner(System.in);
-        System.out.println("RESERVAS -> Listar Reserva por Quarto\n"); //Cabeçalho
-        System.out.print("Insira o número do Quarto: "); //Pede o número do quarto (INTEGER)
-        numQuarto = teclado.nextInt(); //Receber o numero de quarto
+        System.out.println("RESERVAS -> Listar Reserva por Quarto (presentes ou futuras)\n"); //Cabeçalho
+        String numQuartoString = "";
+        boolean opcValida = false;
+        //numQuarto = teclado.nextInt(); //Receber o numero de quarto
+
+        do {
+            try {
+                System.out.print("Insira o número do Quarto: "); //Pede o número do quarto
+                numQuartoString = teclado.nextLine();
+                numQuarto =  Integer.parseInt(numQuartoString);
+                if (numQuarto < 101 || numQuarto > 450) {
+                    System.out.println("Por favor, insira um número de quarto válido (entre 101 e 450)");
+                    opcValida = false;
+                } else {
+                    opcValida = true;
+                }
+            } catch(Exception e) {
+                System.out.println("Por favor, insira um número de quarto válido (entre 101 e 450)");
+                opcValida = false;
+            }
+        } while (numQuarto < 101 || numQuarto > 450 || !opcValida);
+
+        for (Quarto q : quartos) {
+            if (q != null &&  q.getNumero() == numQuarto) {
+                currentIdQuarto = q.getIdQuarto();
+                break;
+            }
+        }
+
         System.out.println("ID,ID Quarto,ID Hospede,Numero Hospedes, Data Inicio, Data Fim, Está Ativa"); //Cabeçalho
         for (Reserva r : reservas) {
             if (r != null) {
                String linha = r.getId() + "," + r.getIdQuarto() + "," + r.getIdHospede() + "," +
                         r.getNumeroHospedes() + "," + r.getDataInicio() + "," + r.getDataFim() + "," +
                         r.getEstaAtiva();
-                currentRoom = r.getIdQuarto();
-                if (Objects.equals(numQuarto, currentRoom)) {
-                    System.out.print(linha);
+                //currentIdQuarto = r.getIdQuarto();
+                if (Objects.equals(r.getIdQuarto(), currentIdQuarto) && r.getEstaAtiva()) {
+                    System.out.println(linha);
                 }
 
             }
@@ -562,7 +655,7 @@ public class Main {
         int hospedeId = -1;
         int currentHospedeId;
         Scanner teclado = new Scanner(System.in);
-        System.out.println("RESERVAS -> Listar Reserva por Hospede\n"); //Cabeçalho
+        System.out.println("RESERVAS -> Listar Reserva por Hospede (presentes ou futuras)\n"); //Cabeçalho
         System.out.print("Insira o número do documento (CC) do Hospede: "); //Pedir o numero de CC do hospede
         numDocumentoHospede = teclado.nextLine(); //Recebe o numero de CC. (AINDA FALTA VALIDAR O FORMATO)
         for (Hospede h : hospedes) {
@@ -582,7 +675,7 @@ public class Main {
                         r.getNumeroHospedes() + "," + r.getDataInicio() + "," + r.getDataFim() + "," +
                         r.getEstaAtiva();
                 currentHospedeId = r.getIdHospede();
-                if (Objects.equals(hospedeId, currentHospedeId) && hospedeId != -1) {
+                if (Objects.equals(hospedeId, currentHospedeId) && hospedeId != -1 && r.getEstaAtiva()) {
                     System.out.println(linha);
                     //break;
                 }
@@ -591,18 +684,41 @@ public class Main {
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
     private static void editarReserva(){
-        int numReserva;
+        int numReserva = 0;
         String novaDataI = "0", novaDataF = "0";
         int novoNumeroHospedes, quartoId;
+        String numReservaString;
         boolean dataInicioValida = false, dataFimValida = false, datasOK = false;
+        boolean opcValida = false;
         char opt = 'z';
+        boolean reservaEncontrada = false;
         String nxtint;
         LocalDate novaDataInicio = LocalDate.parse("1970-01-02"), novaDataFim = LocalDate.parse("1970-01-01");
         Scanner teclado = new Scanner(System.in);
         System.out.println("RESERVAS -> Editar Reserva\n"); //Cabeçalho
-        System.out.print("Insira o ID da Reserva: "); //Pedir o ID da reserva
-        numReserva = teclado.nextInt(); //Recebe o numero da reserva (INTEGER)
-        nxtint = teclado.nextLine();
+
+        do {
+            try {
+                System.out.print("Insira o ID da Reserva: ");
+                numReservaString = teclado.nextLine();
+                numReserva =  Integer.parseInt(numReservaString);
+                if (numReserva < 0 || numReserva > 999) {
+                    System.out.println("Por favor, insira um número de reserva válido (entre 0 e 999)");
+                    opcValida = false;
+                } else {
+                    opcValida = true;
+                }
+            } catch(Exception e) {
+                System.out.println("Por favor, insira um número de reserva válido (entre 0 e 999)");
+                opcValida = false;
+            }
+        } while (numReserva < 0 || numReserva > 999 || !opcValida);
+
+        //System.out.print("Insira o ID da Reserva: "); //Pedir o ID da reserva
+        //numReserva = teclado.nextInt(); //Recebe o numero da reserva (INTEGER)
+        //nxtint = teclado.nextLine();
+
+
         for (Reserva r : reservas) {
             if (r != null) {
                 if (Objects.equals(numReserva, r.getId())) {
@@ -611,6 +727,7 @@ public class Main {
                     System.out.println("Número de Hospedes: " + r.getNumeroHospedes());
                     System.out.println("Data de Inicio: " + r.getDataInicio());
                     System.out.println("Data de Fim: " + r.getDataFim());
+                    reservaEncontrada = true;
                     //pressEnterToContinue();
                     if (!r.getEstaAtiva()) {
                         System.out.println("ATENÇÃO: A reserva encontra-se inativa");
@@ -657,9 +774,30 @@ public class Main {
                         quartoId = -1;
                         int cnt = 0;
                         int novoNumPessoas = 0;
-                        System.out.print("Número de Hospedes: ");
-                        novoNumeroHospedes = teclado.nextInt();
-                        nxtint = teclado.nextLine();
+                        String novoNumPessoasString;
+                        opcValida = false;
+
+                        do {
+                            try {
+                                System.out.print("Insira o Número total de hospedes: ");
+                                novoNumPessoasString = teclado.nextLine();
+                                novoNumPessoas =  Integer.parseInt(novoNumPessoasString);
+                                if (novoNumPessoas < 1 || novoNumPessoas > 6) {
+                                    System.out.println("Por favor, insira um número de hospedes válido (entre 1 e 6)");
+                                    opcValida = false;
+                                } else {
+                                    opcValida = true;
+                                }
+                            } catch(Exception e) {
+                                System.out.println("Por favor, insira um número de hospedes válido (entre 1 e 6)");
+                                opcValida = false;
+                            }
+                        } while (novoNumPessoas < 1 || novoNumPessoas > 6 || !opcValida);
+
+                        //System.out.print("Número de Hospedes: ");
+                        //novoNumeroHospedes = teclado.nextInt();
+                        //nxtint = teclado.nextLine();
+                        novoNumeroHospedes = novoNumPessoas;
                         if (novoNumeroHospedes != r.getNumeroHospedes()) {
                             if (novoNumeroHospedes != obterNumeroDeHospedes(r.getIdQuarto())) {
                                 System.out.println("A procurar um novo quarto para o número de hospedes...");
@@ -680,6 +818,9 @@ public class Main {
                     break;
                 }
             }
+        }
+        if (!reservaEncontrada) {
+            System.out.println("\nReserva não encontrada!\n");
         }
         atualizarTodasAsReservas();
         saveReservasData();
@@ -702,14 +843,36 @@ public class Main {
         return nomeHospede;
     }
     private static void cancelarReserva(){
-        int numReserva;
+        int numReserva = -1;
+        String numReservaString = "";
         char opt;
+        boolean opcValida = false;
         String nxtint;
         Scanner teclado = new Scanner(System.in);
         System.out.println("RESERVAS -> Cancelar Reserva\n");
-        System.out.print("Insira o ID da Reserva: ");
-        numReserva = teclado.nextInt();
-        nxtint = teclado.nextLine();
+
+        do {
+            try {
+                System.out.print("Insira o ID da Reserva: ");
+                numReservaString = teclado.nextLine();
+                numReserva =  Integer.parseInt(numReservaString);
+                if (numReserva < 0 || numReserva > 999) {
+                    System.out.println("Por favor, insira um número de quarto válido (entre 0 e 999)");
+                    opcValida = false;
+                } else {
+                    opcValida = true;
+                }
+            } catch(Exception e) {
+                System.out.println("Por favor, insira um número de quarto válido (entre 0 e 999)");
+                opcValida = false;
+            }
+        } while (numReserva < 0 || numReserva > 999 || !opcValida);
+
+
+        //numReserva = teclado.nextInt();
+        //nxtint = teclado.nextLine();
+
+
         boolean reservaEncontrada = false;
         for (Reserva r : reservas) {
             if (r != null) {
