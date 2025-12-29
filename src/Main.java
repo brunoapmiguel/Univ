@@ -159,16 +159,33 @@ public class Main {
             if (q != null && q.getEstaOcupado()) {
                 String linha = q.getIdQuarto() + "," + q.getNumero() + "," + q.getCapacidade() + "," + q.getEstaOcupado();
                 System.out.println(linha);
+                System.out.println("'- Ocupação atual: " + ocupacaoDoQuarto(q.getIdQuarto()));
             }
         }
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
+    private static int ocupacaoDoQuarto(int quartoId){
+        int ocupacaoAtual = 0;
+        for (Reserva r : reservas) {
+            if (r!=null && r.getIdQuarto()==quartoId){
+                //r.getDataFim().isBefore(LocalDate.now())
+                if (LocalDate.now().isEqual(r.getDataInicio()) ||  LocalDate.now().isEqual(r.getDataFim())) {
+                    ocupacaoAtual = r.getNumeroHospedes();
+                } else if (LocalDate.now().isAfter(r.getDataInicio()) && LocalDate.now().isBefore(r.getDataFim())) {
+                    ocupacaoAtual = r.getNumeroHospedes();
+                }
+            }
+        }
+        return ocupacaoAtual;
+    }
     private static void listarReservasDeQuarto() {
         int numQuarto, currentIdQuarto = -1;
+        String nxtint;
         System.out.println("RESERVAS -> Listar Reservas de Quarto\n");
         Scanner teclado = new Scanner(System.in);
         System.out.print("Insira o número do Quarto: ");  //Pede o numero do Quarto
         numQuarto = teclado.nextInt();
+        nxtint = teclado.nextLine();
         for (Quarto q : quartos) {
             if (q != null &&  q.getNumero() == numQuarto) {
                 currentIdQuarto = q.getIdQuarto();
@@ -183,7 +200,7 @@ public class Main {
                         r.getEstaAtiva();
                 if (r.getIdQuarto() == currentIdQuarto) {
                     System.out.println(linha);
-                    break;
+                    //break;
                 }
             }
         }
@@ -666,6 +683,7 @@ public class Main {
         }
         atualizarTodasAsReservas();
         saveReservasData();
+        atualizarQuartosOcupados();
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
     private static String obterNomeDeHospede(int hospedeId){
@@ -686,13 +704,17 @@ public class Main {
     private static void cancelarReserva(){
         int numReserva;
         char opt;
+        String nxtint;
         Scanner teclado = new Scanner(System.in);
         System.out.println("RESERVAS -> Cancelar Reserva\n");
         System.out.print("Insira o ID da Reserva: ");
         numReserva = teclado.nextInt();
+        nxtint = teclado.nextLine();
+        boolean reservaEncontrada = false;
         for (Reserva r : reservas) {
             if (r != null) {
                 if (numReserva == r.getId()) {
+                    reservaEncontrada = true;
                     System.out.println("ID: " + r.getId());
                     System.out.println("Data Inicio: " + r.getDataInicio());
                     System.out.println("Data Fim: " + r.getDataFim());
@@ -709,11 +731,16 @@ public class Main {
                             break;
                         }
                     } else if (!r.getEstaAtiva()) {
+                        reservaEncontrada = true;
                         System.out.println("\nA reserva já se encontrava inativa!");
                         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
                     }
                 }
             }
+        }
+        if (!reservaEncontrada) {
+            System.out.println("Reserva não encontrada");
+            pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
         }
     }
     //Funções de acesso a ficheiros
