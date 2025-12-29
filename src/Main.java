@@ -346,7 +346,7 @@ public class Main {
         //VALIDAR SE O NUMERO DE RESERVAS ESTA NO MAXIMO
         if (verificarSeHospedeExiste(numDocumentoHospede)) {
             hospedeId = obterIdDeHospede(numDocumentoHospede);
-            System.out.print("Insira o Número total de pessoas: ");
+            System.out.print("Insira o Número total de hospedes: ");
             numPessoas = teclado.nextInt();
             nxline = teclado.nextLine(); //Ler nextline para o nextint acima
             while (!datasOK) {
@@ -399,7 +399,9 @@ public class Main {
         int quartoIdDisponivel = -1;
         for (Quarto q : quartos) {
             if (q != null && !q.getEstaOcupado()) {
-                if (q.getCapacidade() >= numPessoas) {
+                //System.out.println(q.getCapacidade());
+                if (q.getCapacidade() == numPessoas) {
+
                     //System.out.print(q.getIdQuarto());
                     if (!quartoReservadoNesteIntervalo(q.getIdQuarto(), dataI, dataF)) {
                         quartoIdDisponivel = q.getIdQuarto();
@@ -409,6 +411,18 @@ public class Main {
             }
         }
         return quartoIdDisponivel;
+    }
+    private static int obterNumeroDeHospedes(int quartoId){
+        int qtdHospedes = 0;
+        for (Quarto q : quartos) {
+            if (q != null) {
+                if (q.getIdQuarto() == quartoId) {
+                    qtdHospedes =  q.getCapacidade();
+                    break;
+                }
+            }
+        }
+        return qtdHospedes;
     }
     private static boolean quartoReservadoNesteIntervalo(int quartoId, LocalDate dataI, LocalDate dataF){
         boolean reservado = false;
@@ -561,7 +575,7 @@ public class Main {
     private static void editarReserva(){
         int numReserva;
         String novaDataI = "0", novaDataF = "0";
-        int novoNumeroHospedes;
+        int novoNumeroHospedes, quartoId;
         boolean dataInicioValida = false, dataFimValida = false, datasOK = false;
         char opt = 'z';
         String nxtint;
@@ -586,18 +600,16 @@ public class Main {
                     }
                     if ((r.getEstaAtiva()) || (opt == 'S' || opt =='s')) {
                         System.out.print("\nPor favor, insira os novos dados\n");
-                        System.out.print("Número de Hospedes: ");
-                        novoNumeroHospedes = teclado.nextInt();
-                        nxtint = teclado.nextLine();
                         while (!datasOK) {
                             while (!dataInicioValida) {
-                                System.out.print("Insira a Data de Inicio (AAAA-MM-DD): ");
+                                System.out.print("Insira a Nova Data de Inicio (AAAA-MM-DD): ");
                                 novaDataI = teclado.nextLine(); //Recebe a data de inicio
                                 dataInicioValida = dataValida(novaDataI);
+                                System.out.println("Nova data de inicio: "+novaDataI);
                             }
                             novaDataInicio = LocalDate.parse(novaDataI);
                             while (!dataFimValida) {
-                                System.out.print("Insira a Data de Fim (AAAA-MM-DD): ");
+                                System.out.print("Insira a Nova Data de Fim (AAAA-MM-DD): ");
                                 novaDataF = teclado.nextLine(); //Recebe a data de fim
                                 dataFimValida = dataValida(novaDataF);
                             }
@@ -618,6 +630,24 @@ public class Main {
                                 datasOK = true;
                             }
                         }
+                        quartoId = -1;
+                        int cnt = 0;
+                        int novoNumPessoas = 0;
+                        System.out.print("Número de Hospedes: ");
+                        novoNumeroHospedes = teclado.nextInt();
+                        nxtint = teclado.nextLine();
+                        if (novoNumeroHospedes != r.getNumeroHospedes()) {
+                            if (novoNumeroHospedes != obterNumeroDeHospedes(r.getIdQuarto())) {
+                                System.out.println("A procurar um novo quarto para o número de hospedes...");
+                                while (quartoId == -1) {
+                                    novoNumPessoas = novoNumeroHospedes + cnt;
+                                    quartoId = procurarQuartoId(novoNumPessoas, r.getDataInicio(), r.getDataFim());
+                                    System.out.println("Quarto sugerido: " + obterNumerodeQuartoPeloId(quartoId));
+                                    cnt++;
+                                }
+                            }
+                        }
+                        r.setIdQuarto(quartoId);
                         r.setNumeroHospedes(novoNumeroHospedes);
                         r.setDataInicio(novaDataInicio);
                         r.setDataFim(novaDataFim);
