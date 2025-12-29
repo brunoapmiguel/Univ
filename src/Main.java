@@ -584,6 +584,7 @@ public class Main {
         System.out.println("RESERVAS -> Editar Reserva\n"); //Cabeçalho
         System.out.print("Insira o ID da Reserva: "); //Pedir o ID da reserva
         numReserva = teclado.nextInt(); //Recebe o numero da reserva (INTEGER)
+        nxtint = teclado.nextLine();
         for (Reserva r : reservas) {
             if (r != null) {
                 if (Objects.equals(numReserva, r.getId())) {
@@ -599,18 +600,23 @@ public class Main {
                         opt = teclado.next().charAt(0);
                     }
                     if ((r.getEstaAtiva()) || (opt == 'S' || opt =='s')) {
-                        System.out.print("\nPor favor, insira os novos dados\n");
+                        System.out.print("\nPor favor, insira os novos dados. Pressione ENTER para manter os dados anteriores\n");
                         while (!datasOK) {
                             while (!dataInicioValida) {
                                 System.out.print("Insira a Nova Data de Inicio (AAAA-MM-DD): ");
                                 novaDataI = teclado.nextLine(); //Recebe a data de inicio
+                                if (novaDataI == "") {
+                                    novaDataI = String.valueOf(r.getDataInicio());
+                                }
                                 dataInicioValida = dataValida(novaDataI);
-                                System.out.println("Nova data de inicio: "+novaDataI);
                             }
                             novaDataInicio = LocalDate.parse(novaDataI);
                             while (!dataFimValida) {
                                 System.out.print("Insira a Nova Data de Fim (AAAA-MM-DD): ");
                                 novaDataF = teclado.nextLine(); //Recebe a data de fim
+                                if (novaDataF == "") {
+                                    novaDataF = String.valueOf(r.getDataFim());
+                                }
                                 dataFimValida = dataValida(novaDataF);
                             }
                             novaDataFim = LocalDate.parse(novaDataF);
