@@ -250,7 +250,7 @@ public class Main {
         String nome;
         String documento;
         //numHospedes = 1000;
-        if (numHospedes < 1000) {
+        if (numHospedes < maxHospedes) {
             Scanner teclado = new Scanner(System.in);
             System.out.println("HOSPEDES -> Adicionar Hospede\n"); //Cabeçalho
             if (doc == "") {
@@ -271,7 +271,7 @@ public class Main {
                 System.out.println("\nHóspede já existente!");
             }
         } else {
-            System.out.println("ERRO: Já atingiu o número máximo de hospedes (1000)");
+            System.out.println("ERRO: Já atingiu o número máximo de hospedes (" + maxHospedes + ")");
         }
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
@@ -398,7 +398,7 @@ public class Main {
         String dataI = "0", dataF = "0", nxline;
         String numDocumentoHospede, numPessoasString;
         //numReservas = 1000;
-        if (numReservas < 1000) {
+        if (numReservas < maxReservas) {
             Scanner teclado = new Scanner(System.in);
             System.out.println("RESERVAS -> Criar Reserva\n"); //Cabeçalho
             System.out.print("Insira o número do documento do Hospede: ");  //Pede o CC do hospede
@@ -474,7 +474,7 @@ public class Main {
                 }
             }
         } else {
-            System.out.println("ERRO: Já atingiu o máximo número de reservas (1000)");
+            System.out.println("ERRO: Já atingiu o máximo número de reservas (" + maxReservas + ")");
             pressEnterToContinue();
         }
     }
@@ -1063,7 +1063,7 @@ public class Main {
     //Função para aguardar um ENTER por parte do utilizador antes de mudar o menu
     private static void pressEnterToContinue()
     {
-        System.out.println("\nPress ENTER key to continue..."); //Mostrar a mensagem a pedir que o utilizador pressione a tecla ENTER
+        System.out.println("\nPressione ENTER para continuar..."); //Mostrar a mensagem a pedir que o utilizador pressione a tecla ENTER
         try {
             System.in.read();
         }
