@@ -27,7 +27,7 @@ public class Main {
         loadAllData(); //Carregar todos os dados dos ficheiros .csv
         atualizarTodasAsReservas();
         atualizarQuartosOcupados();
-        String dataToCheck = "0";
+        //String dataToCheck = "0";
         do { //Esta função de DO, tem como objectivo repetir o menu enquanto o utilizador não escolher a opção 0 para sair
             showMainMenu(); //Chama a função que desenha o Menu Principal
             //System.out.println(LocalDate.now());
@@ -477,6 +477,8 @@ public class Main {
             if (q != null) {
                 if (verificarSeExisteReservaAtivaEQuartoOcupado(q.getIdQuarto())){
                     q.setEstaOcupado(true);
+                } else {
+                    q.setEstaOcupado(false);
                 }
             }
         }
