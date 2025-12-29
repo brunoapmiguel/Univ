@@ -651,8 +651,8 @@ public class Main {
         int currentHospedeId;
         Scanner teclado = new Scanner(System.in);
         System.out.println("RESERVAS -> Listar Reserva por Hospede (presentes ou futuras)\n"); //Cabeçalho
-        System.out.print("Insira o número do documento (CC) do Hospede: "); //Pedir o numero de CC do hospede
-        numDocumentoHospede = teclado.nextLine(); //Recebe o numero de CC. (AINDA FALTA VALIDAR O FORMATO)
+        System.out.print("Insira o número do documento (CC) do Hospede: "); //Pedir o numero de Documento
+        numDocumentoHospede = teclado.nextLine(); //Recebe o numero de Documento
         for (Hospede h : hospedes) {
             if (h != null) {
                 currentDocumentoHospede = h.getDocumento();
@@ -708,10 +708,6 @@ public class Main {
                 opcValida = false;
             }
         } while (numReserva < 0 || numReserva > 999 || !opcValida);
-
-        //System.out.print("Insira o ID da Reserva: "); //Pedir o ID da reserva
-        //numReserva = teclado.nextInt(); //Recebe o numero da reserva (INTEGER)
-        //nxtint = teclado.nextLine();
 
         for (Reserva r : reservas) {
             if (r != null) {
