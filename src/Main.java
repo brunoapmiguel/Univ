@@ -569,7 +569,6 @@ public class Main {
                     System.out.println(linha);
                     //break;
                 }
-
             }
         }
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
