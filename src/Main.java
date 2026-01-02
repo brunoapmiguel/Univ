@@ -30,7 +30,7 @@ public class Main {
         do { //Esta função de DO, tem como objectivo repetir o menu enquanto o utilizador não escolher a opção 0 para sair
             do {
                 showMainMenu(); //Chama a função que desenha o Menu Principal
-                opcMenu = teclado.nextLine();
+                opcMenu = teclado.nextLine(); //estamos a utilizar uma String e não uma int para conseguirmos gerir os erros
                 if (!opcMenu.equals("1") &&  !opcMenu.equals("2") && !opcMenu.equals("3") &&  !opcMenu.equals("0")) {
                     System.out.println("Opção selecionada é inválida!");
                 }
@@ -42,7 +42,7 @@ public class Main {
                 case "1": //MENU QUARTOS
                     do {
                         showMenuQuartos(); //Chama a função que desenha o menu dos quartos
-                        opcSubMenu = teclado.nextLine();
+                        opcSubMenu = teclado.nextLine(); //estamos a utilizar uma String e não uma int para conseguirmos gerir os erros
                         if (!opcSubMenu.equals("1") &&  !opcSubMenu.equals("2") && !opcSubMenu.equals("3") &&  !opcSubMenu.equals("4") &&  !opcSubMenu.equals("0")) {
                             System.out.println("Opção selecionada é inválida!");
                         }
@@ -62,7 +62,7 @@ public class Main {
                 case "2": //MENU HOSPEDES
                     do {
                         showMenuHospedes(); //Chama a fução que desenha o menu de hospedes
-                        opcSubMenu = teclado.nextLine();
+                        opcSubMenu = teclado.nextLine();  //estamos a utilizar uma String e não uma int para conseguirmos gerir os erros
                         if (!opcSubMenu.equals("1") &&  !opcSubMenu.equals("2") && !opcSubMenu.equals("3") &&  !opcSubMenu.equals("4") &&  !opcSubMenu.equals("0")) {
                             System.out.println("Opção selecionada é inválida!");
                         }
@@ -82,7 +82,7 @@ public class Main {
                 case "3": //MENU RESERVAS
                     do {
                         showMenuReservas(); //Chama a função que desenha o menu de reservas
-                        opcSubMenu = teclado.nextLine();
+                        opcSubMenu = teclado.nextLine();  //estamos a utilizar uma String e não uma int para conseguirmos gerir os erros
                         if (!opcSubMenu.equals("1") &&  !opcSubMenu.equals("2") && !opcSubMenu.equals("3") &&  !opcSubMenu.equals("4") &&  !opcSubMenu.equals("5") &&  !opcSubMenu.equals("6") &&  !opcSubMenu.equals("0")) {
                             System.out.println("Opção selecionada é inválida!");
                         }
@@ -353,6 +353,7 @@ public class Main {
         String numDocumentoHospede = ""; //variavel para receber o numero de CC do hospede
         String currentDocument;
         String novoNomeHospede;
+        boolean hospedeEncontrado = false;
         String novoNumeroCC;
         Scanner teclado = new Scanner(System.in);
         System.out.println("HOSPEDES -> Editar Hospede\n"); //Cabeçalho
@@ -373,17 +374,19 @@ public class Main {
                     if (novoNomeHospede != "") {
                         h.setNome(novoNomeHospede);
                     }
-                    System.out.print("Insira novo Número de Cartão de Cidadão: ");
+                    System.out.print("Insira novo Número de Documento: ");
                     novoNumeroCC = teclado.nextLine(); //Recebe o numero de CC
                     if (novoNumeroCC != "") {
                         h.setDocumento(novoNumeroCC);
                     }
+                    hospedeEncontrado = true;
                     saveHospedesData();
                     break;
-                } else {
-                    System.out.println("Hóspede não encontrado!");
                 }
             }
+        }
+        if (!hospedeEncontrado) {
+            System.out.println("Hóspede não encontrado!");
         }
         pressEnterToContinue(); //Esperar por um ENTER por parte do utilizador
     }
@@ -420,11 +423,6 @@ public class Main {
                         opcValida = false;
                     }
                 } while (numPessoas < 1 || numPessoas > 6 || !opcValida);
-
-                //System.out.print("Insira o Número total de hospedes: ");
-                //numPessoas = teclado.nextInt();
-                //nxline = teclado.nextLine(); //Ler nextline para o nextint acima
-
 
                 while (!datasOK) {
                     while (!dataInicioValida) {
