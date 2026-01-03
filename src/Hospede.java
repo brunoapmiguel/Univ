@@ -30,6 +30,7 @@ public class Hospede {
     public String getDocumento(){
         return this.documento;
     }
+    //Utilizado em caso de debug
     @Override
     public String toString(){
         return String.format("Hospede{id="+id+", nome="+nome+", documento="+documento+"}");

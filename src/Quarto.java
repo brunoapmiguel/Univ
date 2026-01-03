@@ -30,6 +30,8 @@ public class Quarto {
     public boolean getEstaOcupado(){
         return this.estaOcupado;
     }
+
+    //Utilizado em caso de debug
     @Override
     public String toString(){
         return String.format("Quarto{id="+id+", numero="+numero+", capacidade="+capacidade+", estaOcupado="+estaOcupado+"}");

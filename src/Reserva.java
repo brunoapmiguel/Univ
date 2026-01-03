@@ -60,6 +60,7 @@ public class Reserva {
     public boolean getEstaAtiva() {
         return estaAtiva;
     }
+    //Utilizado em caso de debug
     @Override
     public String toString(){
         return String.format("Reserva{id="+id+", idQuarto="+idQuarto+", idHospede="+idHospede+", numeroHospedes="+
